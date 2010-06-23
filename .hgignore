@@ -1,6 +1,5 @@
 .*\.pyc$
-^gtf_to_genes.egg-info/.+
+^nested_dict.egg-info/.+
 ^dist
-gtf_to_genes/test_data/test.shortish.cache
 build
 doc\build
