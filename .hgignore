@@ -1,0 +1,6 @@
+.*\.pyc$
+^gtf_to_genes.egg-info/.+
+^dist
+gtf_to_genes/test_data/test.shortish.cache
+build
+doc\build

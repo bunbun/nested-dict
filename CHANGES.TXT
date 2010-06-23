@@ -1,0 +1,10 @@
+= v. 1.0.6 =
+    _17/August/2009_
+
+    Added to_dict() and __str__()
+	
+= v. 1.0.0 beta =
+    _08/August/2009_
+
+    Initial Release in Oxford       
+	
