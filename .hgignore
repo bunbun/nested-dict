@@ -2,4 +2,3 @@
 ^nested_dict.egg-info/.+
 ^dist
 build
-doc\build
