@@ -10,6 +10,7 @@
 #
 
 import re
+import os
 
 # First, we try to use setuptools. If it's not available locally,
 # we fall back on ez_setup.
@@ -41,7 +42,8 @@ def parse_version(module_file):
     match = re.findall("__version__ = '([^']+)'", s)
     return match[0]
 
-f = open("README.txt")
+
+f = open(os.path.join(os.path.dirname(__file__), "README.txt"))
 nested_dict_readme = f.read()
 f.close()
 nested_dict_version = parse_version("nested_dict.py")
