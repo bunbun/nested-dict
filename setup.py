@@ -1,223 +1,81 @@
 #!/usr/bin/env python
-import ez_setup
-ez_setup.use_setuptools()
+#
+# Copyright (C) 2015 Leo Goodstadt <nested_dict@llew.org.uk>
+#
+# This file is part of nested_dict.
+#
+# nested_dict is free software: you can redistribute it and/or modify
+# it under the terms of the MIT license as found here
+# http://opensource.org/licenses/MIT.
+#
 
-import sys, os
-if not sys.version_info[0:2] >= (2,5):
-    sys.stderr.write("Requires Python later than 2.5\n")
+import re
+
+# First, we try to use setuptools. If it's not available locally,
+# we fall back on ez_setup.
+try:
+    from setuptools import setup
+except ImportError:
+    from ez_setup import use_setuptools
+    use_setuptools()
+    from setuptools import setup
+
+
+import sys
+if not sys.version_info[0:2] >= (2, 7):
+    sys.stderr.write("Requires Python later than 2.7\n")
     sys.exit(1)
 
-# quickly import the latest version of nested_dict
-sys.path.insert(0, os.path.abspath(os.path.join("src")))
-import nested_dict
-sys.path.pop(0)
 
+# Following the recommendations of PEP 396 we parse the version number
+# out of the module.
+def parse_version(module_file):
+    """
+    Parses the version string from the specified file.
+    This implementation is ugly, but there doesn't seem to be a good way
+    to do this in general at the moment.
+    """
+    f = open(module_file)
+    s = f.read()
+    f.close()
+    match = re.findall("__version__ = '([^']+)'", s)
+    return match[0]
 
-if sys.version_info[0:2] >= (2,5):
-    module_dependencies = []
-else:
-    module_dependencies = []
+f = open("README.txt")
+nested_dict_readme = f.read()
+f.close()
+nested_dict_version = parse_version("nested_dict.py")
 
-
-from setuptools import setup, find_packages
 setup(
-        name='nested_dict',
-        version=nested_dict.nested_dict_version, #major.minor[.patch[.sub]]
-        description='defaultdict extension for dictionaries with multiple levels of nesting',
-        long_description=\
-"""
-Hosted at http://code.google.com/p/nested-dict/
-(Documentation at http://nested-dict.googlecode.com/hg/doc/build/html/index.html)
+    name="nested_dict",
+    version=nested_dict_version,
+    description="An example Python package to simulate Kingman's coalescent",
+    long_description=nested_dict_readme,
+    packages=["nested_dict"],
+    author='Leo Goodstadt',
+    author_email='nested_dict@llew.org.uk',
+    url="http://pypi.python.org/pypi/nested_dict",
+    install_requires=[],
+    keywords=["dict", "defaultdict", "nested", "dictionary"],
+    license="MIT",
 
-***************************************
-nested dictionaries
-***************************************
-    **nested_dict** extends `collections.defaultdict <http://docs.python.org/library/collections.html#defaultdict-objects>`_
-    to allow dictionaries with multiple levels of nesting to be created on the fly::
+    classifiers=[
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.1",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: End Users/Desktop",
+        "Intended Audience :: Developers",
+        'Intended Audience :: Information Technology',
+        "License :: OSI Approved :: MIT License",
+        "Topic :: Scientific/Engineering",
+        "Topic :: Software Development :: Libraries",
+    ],
+)
 
-
-        from nested_dict import *
-
-        nd = nested_dict()
-
-        nd["a"]["b"]["c"] = 311
-        nd["d"]["e"] = 311
-
-    Each nested level is create magically when accessed, a process known as
-    `"auto-vivification" <http://en.wikipedia.org/wiki/Autovivification>`_ in perl.
-
-
-******************************************************************************
-nested dictionaries of sets / lists and other collections
-******************************************************************************
-    **nested_dict** also extends `collections.defaultdict <http://docs.python.org/library/collections.html#defaultdict-objects>`_
-    to allow dictionaries of lists, sets or other collections with a specified level of nesting level.
-
-
-==================================================
-    1) The old fashioned way using ugly syntax
-==================================================
-    ::
-
-        d = dict()
-
-        d.setdefault(""1st group", []).append(3)
-        d.setdefault(""2nd group", []).append(5)
-        d.setdefault(""2nd group", []).append(8)
-        d.setdefault(""1st group", []).append(4)
-        d.setdefault(""2nd group", []).append(5)
-
-====================================================================================================
-    2) ``default_dict`` adds ``list``\ s automatically when required
-====================================================================================================
-    ::
-
-        from collections import defaultdict
-
-        dd = defaultdict(list)
-
-        dd["1st group"].append(3)
-        dd["2nd group"].append(5)
-        dd["2nd group"].append(8)
-        dd["1st group"].append(4)
-        dd["2nd group"].append(5)
-
-====================================================================================================
-    3) ``nested_dict`` adds ``list``\ s automatically when required for nested dictionaries
-====================================================================================================
-    ::
-
-        from nested_dict import nested_dict
-
-        # specify two levels of nesting
-        nd = nested_dict(2, list)
-
-        nd["1st group"]["subset a"].append(3)
-        nd["2nd group"]["subset a"].append(5)
-        nd["2nd group"]["subset b"].append(8)
-        nd["1st group"]["subset a"].append(4)
-        nd["2nd group"]["subset b"].append(5)
-
-        print nd
-
-    gives::
-
-            {'1st group': {'subset a': [3, 4]},
-             '2nd group': {'subset b': [8, 5],
-                           'subset a': [5]}}
-
-
-*********************************
-More examples:
-*********************************
-
-==================================
-    "Auto-vivifying" nested dict
-==================================
-        ::
-
-            nd= nested_dict()
-            nd["mouse"]["chr1"]["+"] = 311
-            nd["mouse"]["chromosomes"]="completed"
-            nd["mouse"]["chr2"] = "2nd longest"
-            nd["mouse"]["chr3"] = "3rd longest"
-
-            for k, v in nd.iteritems_flat():
-                 print "%-30s=-%20s" % (k,v)
-
-        Gives
-            ::
-
-                ('mouse', 'chr3')             =-         3rd longest
-                ('mouse', 'chromosomes')      =-           completed
-                ('mouse', 'chr2')             =-         2nd longest
-                ('mouse', 'chr1', '+')        =-                 311
-
-====================================================================
-    Specifying the autovivified object
-====================================================================
-    If you wish the nested dictionary to hold a collection rather than a scalar,
-    you have to write::
-
-            nd["mouse"]["chr2"] = list()
-            nd["mouse"]["chr2"].append(12)
-
-    or::
-
-            nd["mouse"]["chr2"] = set()
-            nd["mouse"]["chr2"].add(84)
-
-    Which doesn't seem very "auto" at all!
-
-    Instead, specify the collection in the constructor of **nested_dict**::
-
-        # two levels of nesting
-        nd2 = nested_dict(2, list)
-        nd2["mouse"]["chr2"].append(12)
-
-        # three levels of nesting
-        nd3 = nested_dict(3, set)
-        nd3["mouse"]["chr2"]["categorised"].add(3)
-
-        # counts
-        nd4 = nested_dict(2, int)
-        nd4["mouse"]["chr2"]+=4
-        nd4["human"]["chr1"]+=3
-        nd4["human"]["chr3"]+=4
-
-""",
-        author='Leo Goodstadt',
-        author_email='pypi@llew.org.uk',
-        #url='http://ruffus.googlecode.com',
-        #download_url = "http://http://code.google.com/p/ruffus/download",
-
-        #install_requires = module_dependencies, #['multiprocessing>=1.0', 'json' ], #, 'python>=2.5'],
-        #setup_requires   = module_dependencies, #['multiprocessing>=1.0', 'json'],    #, 'python>=2.5'],
-
-
-        classifiers=[
-                    'Intended Audience :: End Users/Desktop',
-                    'Development Status :: 5 - Production/Stable',
-                    'Intended Audience :: Developers',
-                    'Intended Audience :: Information Technology',
-                    'License :: OSI Approved :: MIT License',
-                    'Programming Language :: Python',
-                    'Topic :: Scientific/Engineering',
-                    'Topic :: Software Development :: Libraries',
-                    ],
-        license = "MIT",
-        keywords = "make task pipeline parallel bioinformatics science",
-
-
-        #packages = find_packages('src'),    # include all packages under src
-        #package_dir = {'':'src'},           #packages are under src
-        #packages=['nested_dict'],
-        #package_dir={'': 'src'},
-        py_modules = ['nested_dict'],
-
-        include_package_data = True,    # include everything in source control
-        #package_data = {
-        #    # If any package contains *.txt files, include them:
-        #    '': ['*.TXT'],                                \
-        #}
-
-
-     )
-
-#setup.py
-#   src/
-#       nested_dict.py
-#   doc/
-#   CHANGES.txt
-#   README.txt
-#   USAGE.txt
-#
-#  http://pypi.python.org/pypi
-#  http://docs.python.org/distutils/packageindex.html
-#
-#
-#
-#   python setup.py register
-# python setup.py sdist  upload --formats=gztar,zip
-# python setup.py bdist --format=rpm,gztar,zip,wininst sdist --format=gztar,zip upload
+# python setup.py register
 # python setup.py sdist --format=gztar,zip upload

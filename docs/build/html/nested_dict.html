@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nested_dict &mdash; nested_dict 1.5.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="nested_dict 1.5.0 documentation" href="index.html"/>
+        <link rel="prev" title="Introduction" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> nested_dict</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">nested_dict</a><ul class="simple">
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">nested_dict</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>nested_dict</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/nested_dict.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="module-nested_dict">
+<span id="nested-dict"></span><h1>nested_dict<a class="headerlink" href="#module-nested_dict" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>nested_dict<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nested_dict.nested_dict">
+<em class="property">class </em><code class="descclassname">nested_dict.</code><code class="descname">nested_dict</code><a class="reference internal" href="_modules/nested_dict.html#nested_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nested_dict.nested_dict" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="nested_dict.nested_dict.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="optional">[</span><em>nested_level</em>, <em>value_type</em><span class="optional">]</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nested_dict.html#nested_dict.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nested_dict.nested_dict.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nested_level</strong> &#8211; the level of nestedness in the dictionary</li>
+<li><strong>collection_type</strong> &#8211; the type of the values held in the dictionary</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>For example,</p>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;level 1&#39;</span><span class="p">][</span><span class="s">&#39;level 2&#39;</span><span class="p">][</span><span class="s">&#39;level 3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="s">&#39;level 1&#39;</span><span class="p">][</span><span class="s">&#39;level 2&#39;</span><span class="p">]</span><span class="o">+=</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>If nested_level and value_type are not defined, the degree of nested-ness is not
+fixed. For example,</p>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;1&#39;</span><span class="p">][</span><span class="s">&#39;2&#39;</span><span class="p">][</span><span class="s">&#39;3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">][</span><span class="s">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="nested_dict.nested_dict.iteritems_flat">
+<code class="descname">iteritems_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.iteritems_flat" title="Permalink to this definition">¶</a></dt>
+<dd><p>iterate through values with nested keys flattened into a tuple</p>
+<p>For example,</p>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;1&#39;</span><span class="p">][</span><span class="s">&#39;2&#39;</span><span class="p">][</span><span class="s">&#39;3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">][</span><span class="s">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div>
+</div>
+<p>print list(a.iteritems_flat())</p>
+</div></blockquote>
+<p>Produces:</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="p">[</span>       <span class="p">((</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="s">&#39;3&#39;</span><span class="p">),</span>   <span class="mi">3</span><span class="p">),</span>
+        <span class="p">((</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">),</span>        <span class="mi">15</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="nested_dict.nested_dict.iterkeys_flat">
+<code class="descname">iterkeys_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.iterkeys_flat" title="Permalink to this definition">¶</a></dt>
+<dd><p>iterate through values with nested keys flattened into a tuple</p>
+<p>For example,</p>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;1&#39;</span><span class="p">][</span><span class="s">&#39;2&#39;</span><span class="p">][</span><span class="s">&#39;3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">][</span><span class="s">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">iterkeys_flat</span><span class="p">())</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Produces:</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="p">[(</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;2&#39;</span><span class="p">,</span> <span class="s">&#39;3&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="nested_dict.nested_dict.itervalues_flat">
+<code class="descname">itervalues_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.itervalues_flat" title="Permalink to this definition">¶</a></dt>
+<dd><p>iterate through values as a single list, without considering the degree of nesting</p>
+<p>For example,</p>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;1&#39;</span><span class="p">][</span><span class="s">&#39;2&#39;</span><span class="p">][</span><span class="s">&#39;3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">][</span><span class="s">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">itervalues_flat</span><span class="p">())</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Produces:</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="nested_dict.nested_dict.to_dict">
+<code class="descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the nested dictionary to a nested series of standard <code class="docutils literal"><span class="pre">dict</span></code> objects</p>
+<p>For example,</p>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;1&#39;</span><span class="p">][</span><span class="s">&#39;2&#39;</span><span class="p">][</span><span class="s">&#39;3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">][</span><span class="s">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>Produces:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&#39;1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;2&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;3&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}},</span> <span class="s">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;B&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">}}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="nested_dict.nested_dict.__str__">
+<code class="descname">__str__</code><span class="sig-paren">(</span><span class="optional">[</span><em>indent</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dictionary formatted as a string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>indent</strong> &#8211; The level of indentation for each nested level</td>
+</tr>
+</tbody>
+</table>
+<p>For example,</p>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;1&#39;</span><span class="p">][</span><span class="s">&#39;2&#39;</span><span class="p">][</span><span class="s">&#39;3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">][</span><span class="s">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="k">print</span> <span class="n">a</span>
+<span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">__str__</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>Produces:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;2&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;3&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}},</span> <span class="s">&quot;A&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;B&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">}}</span>
+<span class="p">{</span>
+    <span class="s">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;2&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&quot;3&quot;</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s">&quot;A&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;B&quot;</span><span class="p">:</span> <span class="mi">15</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Inspired in part from ideas in:
+<a class="reference external" href="http://stackoverflow.com/questions/635483/what-is-the-best-way-to-implement-nested-dictionaries-in-python">http://stackoverflow.com/questions/635483/what-is-the-best-way-to-implement-nested-dictionaries-in-python</a>
+contributed by nosklo</p>
+<p>Many thanks</p>
+</div></blockquote>
+</div>
+<div class="section" id="copyright">
+<h2>Copyright<a class="headerlink" href="#copyright" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The code is licensed under the MIT Software License
+<a class="reference external" href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a></p>
+<p>This essentially only asks that the copyright notices in this code be maintained
+for <strong>source</strong> distributions.</p>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Introduction"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2009, 2015, Leo Goodstadt.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.5.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
