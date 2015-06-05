@@ -1,1 +1,0 @@
-/home/lg/src/oss/nested_dict/README.rst
