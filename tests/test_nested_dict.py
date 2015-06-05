@@ -16,7 +16,6 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, parent_dir)
 
 
-
 class Test_nested_dict_default(unittest.TestCase):
 
     def test_default(self):
@@ -73,7 +72,6 @@ class Test_nested_dict_list(unittest.TestCase):
                                                                   "staff"]},
                               "new york": {"queens county": ["cricketers"]}})
 
-
     def test_iteritems_flat(self):
         """
         test iteritems_flat()
@@ -83,8 +81,6 @@ class Test_nested_dict_list(unittest.TestCase):
         a['1']['2']['3'] = 3
         a['A']['B'] = 15
         self.assertEqual(list(a.iteritems_flat()), [(('1', '2', '3'), 3), (('A', 'B'), 15)])
-
-
 
     def test_iterkeys_flat(self):
         """
@@ -120,12 +116,11 @@ class Test_nested_dict_list(unittest.TestCase):
         self.assertEqual(a.to_dict(), {'1': {'2': {'3': 3}}, 'A': {'B': 15}})
 
     def test_str(self):
-         """
-         str()
-         """
-         import nested_dict
-         a = nested_dict.nested_dict()
-         a['1']['2']['3'] = 3
-         a['A']['B'] = 15
-         self.assertEqual(str(a), '{"1": {"2": {"3": 3}}, "A": {"B": 15}}')
-
+        """
+        str()
+        """
+        import nested_dict
+        a = nested_dict.nested_dict()
+        a['1']['2']['3'] = 3
+        a['A']['B'] = 15
+        self.assertEqual(str(a), '{"1": {"2": {"3": 3}}, "A": {"B": 15}}')

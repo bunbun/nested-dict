@@ -90,18 +90,19 @@ class _recursive_dict(defaultdict):
                 plain_dict[key] = value
         return plain_dict
 
-    def __str__ (self, indent = None):
+    def __str__(self, indent=None):
         """
         string version of self
         """
         import json
-        return json.dumps(self.to_dict(), indent = indent)
+        return json.dumps(self.to_dict(), indent=indent)
 
 
 class any_type(object):
     pass
 
-def _nested_levels (level, nested_type):
+
+def _nested_levels(level, nested_type):
     """
     Helper function to create a specified degree of nested dictionaries
     """
@@ -114,11 +115,12 @@ def _nested_levels (level, nested_type):
             return lambda: _recursive_dict(_nested_levels(level - 1,  nested_type))
     return nested_type
 
-#_________________________________________________________________________________________
+
+# _________________________________________________________________________________________
 #
 #   nested_dict
 #
-#_________________________________________________________________________________________
+# _________________________________________________________________________________________
 class nested_dict(_recursive_dict):
     def __init__(self, *param):
         """
@@ -127,23 +129,16 @@ class nested_dict(_recursive_dict):
         if not len(param):
             defaultdict.__init__(self, nested_dict)
         else:
-            if len(param) in (1,2):
+            if len(param) in (1, 2):
                 if len(param) == 2:
                     level, nested_type = param
                 else:
                     level, nested_type = param[0], any_type()
                 if not isinstance(level, int):
-                    raise Exception(  "nested_dict should be initialised with the "
-                                      "number of nested levels and (optionally) the "
-                                      "type held in the nested_dict")
+                    raise Exception("nested_dict should be initialised with the "
+                                    "number of nested levels and (optionally) the "
+                                    "type held in the nested_dict")
                 defaultdict.__init__(self, _nested_levels(level, nested_type))
             else:
                 raise Exception(  "nested_dict should be initialised with the number of "
                                   "nested levels and the type held in the nested_dict")
-
-
-
-
-
-
-
