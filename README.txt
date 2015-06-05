@@ -1,1 +1,1 @@
-../nested_dict/README.rst
+README.rst
