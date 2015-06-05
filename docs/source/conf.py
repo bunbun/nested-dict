@@ -73,7 +73,7 @@ def parse_version(module_file):
     match = re.findall("__version__ = '([^']+)'", s)
     return match[0]
 
-nested_dict_version = parse_version(os.path.join("..", "..", "nested_dict.py"))
+nested_dict_version = parse_version(os.path.join("..", "..", "nested_dict", "__init__.py"))
 
 
 
