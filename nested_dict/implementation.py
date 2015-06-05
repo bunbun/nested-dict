@@ -49,7 +49,10 @@ class _recursive_dict(defaultdict):
         """
         iterate through values with nested keys flattened into a tuple
         """
-        for key, value in self.iteritems():
+        #if sys.hexversion >= 0x03000000:
+
+        for key in self:
+            value = self[key]
             # if "<class '__main__._recursive_dict'>" == str(value.__class__):
             if isinstance(value, _recursive_dict):
                 for keykey, value in value.iteritems_flat():
@@ -81,7 +84,8 @@ class _recursive_dict(defaultdict):
         plain_dict = dict()
         if input_dict is None:
             input_dict = self
-        for key, value in input_dict.iteritems():
+        for key in sorted(input_dict.keys()):
+            value = input_dict[key]
             if isinstance(value, _recursive_dict):
                 # print "recurse", value
                 plain_dict[key] = self.to_dict(value)

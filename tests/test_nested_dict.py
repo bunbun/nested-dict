@@ -30,13 +30,13 @@ class Test_nested_dict_default(unittest.TestCase):
         nd['new jersey']['middlesex county']['salesmen'] = 62
         nd['new york']['queens county']['plumbers'] = 9
         nd['new york']['queens county']['salesmen'] = 36
-        all = [tup for tup in nd.iteritems_flat()]
-        self.assertEqual(all, [(('new jersey', 'mercer county', 'programmers'),    81),
-                               (('new jersey', 'mercer county', 'plumbers'),        3),
+        all = sorted(tup for tup in nd.iteritems_flat())
+        self.assertEqual(all, [(('new jersey', 'mercer county', 'plumbers'),        3),
+                               (('new jersey', 'mercer county', 'programmers'),    81),
                                (('new jersey', 'middlesex county', 'programmers'), 81),
                                (('new jersey', 'middlesex county', 'salesmen'),    62),
-                               (('new york', 'queens county', 'salesmen'),         36),
-                               (('new york', 'queens county', 'plumbers'),         9)])
+                               (('new york', 'queens county', 'plumbers'),          9),
+                               (('new york', 'queens county', 'salesmen'),         36)])
 
 
 class Test_nested_dict_list(unittest.TestCase):
@@ -52,16 +52,16 @@ class Test_nested_dict_list(unittest.TestCase):
         nd['new jersey']['middlesex county'].append('salesmen')
         nd['new jersey']['middlesex county'].append('staff')
         nd['new york']['queens county'].append('cricketers')
-        all = [tup for tup in nd.iteritems_flat()]
+        all = sorted(tup for tup in nd.iteritems_flat())
         self.assertEqual(all, [(('new jersey', 'mercer county'),    ['plumbers', 'programmers']),
                                (('new jersey', 'middlesex county'), ['salesmen', 'staff']),
                                (('new york', 'queens county'),      ['cricketers']),
                                ])
-        all = [tup for tup in nd.itervalues_flat()]
-        self.assertEqual(all, [['plumbers', 'programmers'],
-                               ['salesmen', 'staff'],
-                               ['cricketers']])
-        all = [tup for tup in nd.iterkeys_flat()]
+        all = sorted(tup for tup in nd.itervalues_flat())
+        self.assertEqual(all, [['cricketers'],
+                               ['plumbers', 'programmers'],
+                               ['salesmen', 'staff']])
+        all = sorted(tup for tup in nd.iterkeys_flat())
         self.assertEqual(all, [('new jersey', 'mercer county'),
                                ('new jersey', 'middlesex county'),
                                ('new york', 'queens county')])
@@ -80,7 +80,7 @@ class Test_nested_dict_list(unittest.TestCase):
         a = nested_dict.nested_dict()
         a['1']['2']['3'] = 3
         a['A']['B'] = 15
-        self.assertEqual(list(a.iteritems_flat()), [(('1', '2', '3'), 3), (('A', 'B'), 15)])
+        self.assertEqual(sorted(a.iteritems_flat()), [(('1', '2', '3'), 3), (('A', 'B'), 15)])
 
     def test_iterkeys_flat(self):
         """
@@ -91,7 +91,7 @@ class Test_nested_dict_list(unittest.TestCase):
         a = nested_dict.nested_dict()
         a['1']['2']['3'] = 3
         a['A']['B'] = 15
-        self.assertEqual(list(a.iterkeys_flat()), [('1', '2', '3'), ('A', 'B')])
+        self.assertEqual(sorted(a.iterkeys_flat()), [('1', '2', '3'), ('A', 'B')])
 
     def test_itervalues_flat(self):
         """
@@ -102,7 +102,7 @@ class Test_nested_dict_list(unittest.TestCase):
         a = nested_dict.nested_dict()
         a['1']['2']['3'] = 3
         a['A']['B'] = 15
-        self.assertEqual(list(a.itervalues_flat()), [3, 15])
+        self.assertEqual(sorted(a.itervalues_flat()), [3, 15])
 
     def test_to_dict(self):
         """
