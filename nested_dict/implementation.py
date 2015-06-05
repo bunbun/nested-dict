@@ -32,7 +32,6 @@ from __future__ import division
 #################################################################################
 
 
-__version__ = '1.5.0'
 from collections import defaultdict
 
 

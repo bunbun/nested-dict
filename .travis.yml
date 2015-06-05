@@ -8,6 +8,7 @@ python:
 
 install:
   - pip install -r requirements.txt
+  - pip install .
 
 script: 
   - flake8 *.py tests --exclude=ez_setup.py --max-line-length=100
