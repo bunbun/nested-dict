@@ -38,6 +38,15 @@ class Test_nested_dict_default(unittest.TestCase):
                                (('new york', 'queens county', 'plumbers'),          9),
                                (('new york', 'queens county', 'salesmen'),         36)])
 
+import sys
+if sys.version < '3':
+    import codecs
+    def u(x):
+        return codecs.unicode_escape_decode(x)[0]
+else:
+    def u(x):
+        return x
+
 
 class Test_nested_dict_list(unittest.TestCase):
 
@@ -120,7 +129,9 @@ class Test_nested_dict_list(unittest.TestCase):
         str()
         """
         import nested_dict
+        import json
         a = nested_dict.nested_dict()
         a['1']['2']['3'] = 3
         a['A']['B'] = 15
-        self.assertEqual(str(a), '{"1": {"2": {"3": 3}}, "A": {"B": 15}}')
+        self.assertEqual(json.loads(str(a)), {u('1'): {u('2'): {u('3'): 3}}, u('A'): {u('B'): 15}})
+
