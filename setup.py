@@ -57,7 +57,8 @@ setup(
     author='Leo Goodstadt',
     author_email='nested_dict@llew.org.uk',
     url="http://pypi.python.org/pypi/nested_dict",
-    install_requires=["json"],
+    install_requires=[],
+    setup_requires  = [],
     keywords=["dict", "defaultdict", "nested", "dictionary"],
     license="MIT",
 
