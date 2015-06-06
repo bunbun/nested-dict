@@ -41,9 +41,11 @@ class Test_nested_dict_default(unittest.TestCase):
 import sys
 if sys.version < '3':
     import codecs
+
     def u(x):
         return codecs.unicode_escape_decode(x)[0]
 else:
+
     def u(x):
         return x
 
@@ -134,4 +136,3 @@ class Test_nested_dict_list(unittest.TestCase):
         a['1']['2']['3'] = 3
         a['A']['B'] = 15
         self.assertEqual(json.loads(str(a)), {u('1'): {u('2'): {u('3'): 3}}, u('A'): {u('B'): 15}})
-
