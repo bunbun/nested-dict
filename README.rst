@@ -19,7 +19,7 @@ Introduction
         Python
 
 
-Each nested level is create magically when accessed, a process known as "auto-vivification" in perl.
+Each nested level is created magically when accessed, a process known as "auto-vivification" in perl.
 
 ******************************************************************************
 Working without `nested_dict`
@@ -59,7 +59,7 @@ For two levels of nesting:
         Python
 
 
-The syntax becomes rapidly more ugly with additional levels of nesting, and it is difficult to mix dictionaries with different levels of nestedness.
+However, the syntax becomes rapidly more ugly with additional levels of nesting, and it is difficult to mix dictionaries with different levels of nestedness.
 
 ##############################################################################
 How to use `nested_dict`
@@ -76,12 +76,12 @@ Flexible levels of nesting
     from nested_dict import nested_dict
     nd= nested_dict()
     nd["mouse"]["chr1"]["+"] = 311
-    nd["mouse"]["chromosomes"]="completed"
+    nd["mouse"]["chromosomes"]["Y"]["Male"] = True
     nd["mouse"]["chr2"] = "2nd longest"
     nd["mouse"]["chr3"] = "3rd longest"
 
     for k, v in nd.iteritems_flat():
-        print "%-30s==%20r" % (k,v)
+        print "%-50s==%20r" % (k,v)
 
   ..
       Python
@@ -93,10 +93,10 @@ Gives:
 
     .. code-block:: Python
 
-        ('mouse', 'chr3')             ==       '3rd longest'
-        ('mouse', 'chromosomes')      ==         'completed'
-        ('mouse', 'chr2')             ==       '2nd longest'
-        ('mouse', 'chr1', '+')        ==                 311
+        ('mouse', 'chr3')                                 ==       '3rd longest'
+        ('mouse', 'chromosomes', 'Y', 'Male')             ==                True
+        ('mouse', 'chr2')                                 ==       '2nd longest'
+        ('mouse', 'chr1', '+')                            ==                 311
 
     ..
         Python
