@@ -60,8 +60,10 @@ class Test_nested_dict_list(unittest.TestCase):
         #
         import nested_dict
         try:
-            nd3 = nested_dict.nested_dict(1,2,3)
+            nd3 = nested_dict.nested_dict(1, 2, 3)
             self.assertTrue("Should have throw assertion before getting here")
+            # just so flake8 stops complaining!
+            nd3[1][2][3] = "b"
         except Exception:
             pass
 
@@ -75,22 +77,22 @@ class Test_nested_dict_list(unittest.TestCase):
         import nested_dict
         nd4 = nested_dict.nested_dict(4)
         # OK: Assign to "string"
-        nd4[1][2][3][4]="a"
+        nd4[1][2][3][4] = "a"
 
         # Bad: Five levels is one too many
         try:
-            nd4[1][2][3]["four"][5]="b"
+            nd4[1][2][3]["four"][5] = "b"
             self.assertTrue("Should have throw assertion before getting here")
         except KeyError:
             pass
-            
+
         nd2 = nested_dict.nested_dict(2)
         # OK: Assign to "string"
-        nd2[1][2]="a"
+        nd2[1][2] = "a"
 
         # Bad: Five levels is one too many
         try:
-            nd2[1]["two"][3]="b"
+            nd2[1]["two"][3] = "b"
             self.assertTrue("Should have throw assertion before getting here")
         except KeyError:
             pass
