@@ -34,6 +34,26 @@ from __future__ import division
 
 from collections import defaultdict
 
+import sys
+def flatten_nested_items(dictionary):
+    """
+    iterate through nested dictionary (with iterkeys() method)
+         and return with nested keys flattened into a tuple
+    """
+    if sys.hexversion < 0x03000000:
+        keys = dictionary.iterkeys
+        keystr = "iterkeys"
+    else:
+        keys = dictionary.keys
+        keystr = "keys"
+    for key in keys():
+        value = dictionary[key]
+        if hasattr(value, keystr):
+            for keykey, value in flatten_nested_items(value):
+                yield (key,) + keykey, value
+        else:
+            yield (key,), value
+
 
 class _recursive_dict(defaultdict):
     """
@@ -49,30 +69,29 @@ class _recursive_dict(defaultdict):
         """
         iterate through values with nested keys flattened into a tuple
         """
-        #if sys.hexversion >= 0x03000000:
 
-        for key in self:
-            value = self[key]
-            # if "<class '__main__._recursive_dict'>" == str(value.__class__):
-            if isinstance(value, _recursive_dict):
-                for keykey, value in value.iteritems_flat():
-                    yield (key,) + keykey, value
-            else:
-                yield (key,), value
+        for key, value in flatten_nested_items(self):
+            yield key, value
 
     def iterkeys_flat(self):
         """
         iterate through values with nested keys flattened into a tuple
         """
-        for key, value in self.iteritems_flat():
+        for key, value in flatten_nested_items(self):
             yield key
 
     def itervalues_flat(self):
         """
         iterate through values with nested keys flattened into a tuple
         """
-        for key, value in self.iteritems_flat():
+        for key, value in flatten_nested_items(self):
             yield value
+
+    items_flat = iteritems_flat
+    keys_flat = iterkeys_flat
+    values_flat = itervalues_flat
+
+
 
     def to_dict(self, input_dict=None):
         """
@@ -84,7 +103,7 @@ class _recursive_dict(defaultdict):
         plain_dict = dict()
         if input_dict is None:
             input_dict = self
-        for key in sorted(input_dict.keys()):
+        for key in input_dict.keys():
             value = input_dict[key]
             if isinstance(value, _recursive_dict):
                 # print "recurse", value

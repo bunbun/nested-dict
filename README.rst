@@ -80,7 +80,7 @@ Flexible levels of nesting
     nd["mouse"]["chr2"] = "2nd longest"
     nd["mouse"]["chr3"] = "3rd longest"
 
-    for k, v in nd.iteritems_flat():
+    for k, v in nd.items_flat():
         print "%-50s==%20r" % (k,v)
 
   ..
@@ -218,8 +218,10 @@ You can use nested iterators to iterate through `nested_dict` just like ordinary
 
 This is less useful if you do not know beforehand how many levels of nesting you have.
 
-Instead, you can use `iteritems_flat()`\ , `iterkeys_flat()`\ , and `itervalues_flat()`\ . The `_flat()` functions
-are just like their normal counterparts except they compress all the nested keys into `tuple  <https://docs.python.org/2/library/functions.html#tuple>`__\ s:
+Instead, you can use ``items_flat()``\ , ``keys_flat()``\ , and ``values_flat()``\ . 
+(``iteritems_flat()``\ , ``iterkeys_flat()``\ , and ``itervalues_flat()`` are python2.7 style synonyms. )
+The `_flat()` functions are just like their normal counterparts except they compress all the nested 
+keys into `tuple  <https://docs.python.org/2/library/functions.html#tuple>`__\ s:
 
 
     .. <<Python
@@ -233,7 +235,7 @@ are just like their normal counterparts except they compress all the nested keys
         nd["mouse"]["chr2"] = "2nd longest"
         nd["mouse"]["chr3"] = "3rd longest"
 
-        for keys_as_tuple, value in nd.iteritems_flat():
+        for keys_as_tuple, value in nd.items_flat():
             print ("%-30s == %20r" % (keys_as_tuple, value))
         #   ('mouse', 'chr3')              ==        '3rd longest'
         #   ('mouse', 'chromosomes')       ==          'completed'

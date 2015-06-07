@@ -46,6 +46,10 @@ nested_dict
 
     .. method:: iteritems_flat()
 
+        python 2.7 style synonym for ``items_flat()``
+
+    .. method:: items_flat()
+
         iterate through values with nested keys flattened into a tuple
 
         For example,
@@ -57,7 +61,7 @@ nested_dict
                 a['1']['2']['3'] = 3
                 a['A']['B'] = 15
 
-            print list(a.iteritems_flat())
+            print list(a.items_flat())
 
         Produces:
 
@@ -69,6 +73,10 @@ nested_dict
 
     .. method:: iterkeys_flat()
 
+        python 2.7 style synonym for ``keys_flat()``
+
+    .. method:: keys_flat()
+
         iterate through values with nested keys flattened into a tuple
 
         For example,
@@ -80,7 +88,7 @@ nested_dict
                 a['1']['2']['3'] = 3
                 a['A']['B'] = 15
 
-                print list(a.iterkeys_flat())
+                print list(a.keys_flat())
 
         Produces:
 
@@ -90,6 +98,10 @@ nested_dict
 
 
     .. method:: itervalues_flat()
+
+        python 2.7 style synonym for ``values_flat()``
+
+    .. method:: values_flat()
 
         iterate through values as a single list, without considering the degree of nesting
 
@@ -102,7 +114,7 @@ nested_dict
                 a['1']['2']['3'] = 3
                 a['A']['B'] = 15
 
-                print list(a.itervalues_flat())
+                print list(a.values_flat())
 
         Produces:
 

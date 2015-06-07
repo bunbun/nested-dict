@@ -30,13 +30,17 @@ class Test_nested_dict_default(unittest.TestCase):
         nd['new jersey']['middlesex county']['salesmen'] = 62
         nd['new york']['queens county']['plumbers'] = 9
         nd['new york']['queens county']['salesmen'] = 36
+
+        expected_result = sorted([(('new jersey', 'mercer county', 'plumbers'),        3),
+                                  (('new jersey', 'mercer county', 'programmers'),    81),
+                                  (('new jersey', 'middlesex county', 'programmers'), 81),
+                                  (('new jersey', 'middlesex county', 'salesmen'),    62),
+                                  (('new york', 'queens county', 'plumbers'),          9),
+                                  (('new york', 'queens county', 'salesmen'),         36)])
         all = sorted(tup for tup in nd.iteritems_flat())
-        self.assertEqual(all, [(('new jersey', 'mercer county', 'plumbers'),        3),
-                               (('new jersey', 'mercer county', 'programmers'),    81),
-                               (('new jersey', 'middlesex county', 'programmers'), 81),
-                               (('new jersey', 'middlesex county', 'salesmen'),    62),
-                               (('new york', 'queens county', 'plumbers'),          9),
-                               (('new york', 'queens county', 'salesmen'),         36)])
+        self.assertEqual(all, expected_result)
+        all = sorted(tup for tup in nd.items_flat())
+        self.assertEqual(all, expected_result)
 
 import sys
 if sys.version < '3':
@@ -64,6 +68,17 @@ class Test_nested_dict_list(unittest.TestCase):
             self.assertTrue("Should have throw assertion before getting here")
             # just so flake8 stops complaining!
             nd3[1][2][3] = "b"
+        except Exception:
+            pass
+        #
+        #   levels not int
+        #
+        import nested_dict
+        try:
+            nd2 = nested_dict.nested_dict("a", "b")
+            self.assertTrue("Should have throw assertion before getting here")
+            # just so flake8 stops complaining!
+            nd2[1][2] = "b"
         except Exception:
             pass
 
@@ -117,7 +132,15 @@ class Test_nested_dict_list(unittest.TestCase):
         self.assertEqual(all, [['cricketers'],
                                ['plumbers', 'programmers'],
                                ['salesmen', 'staff']])
+        all = sorted(tup for tup in nd.values_flat())
+        self.assertEqual(all, [['cricketers'],
+                               ['plumbers', 'programmers'],
+                               ['salesmen', 'staff']])
         all = sorted(tup for tup in nd.iterkeys_flat())
+        self.assertEqual(all, [('new jersey', 'mercer county'),
+                               ('new jersey', 'middlesex county'),
+                               ('new york', 'queens county')])
+        all = sorted(tup for tup in nd.keys_flat())
         self.assertEqual(all, [('new jersey', 'mercer county'),
                                ('new jersey', 'middlesex county'),
                                ('new york', 'queens county')])

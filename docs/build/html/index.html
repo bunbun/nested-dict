@@ -114,7 +114,7 @@
 </pre></div>
 </div>
 </div></blockquote>
-<p>Each nested level is create magically when accessed, a process known as &#8220;auto-vivification&#8221; in perl.</p>
+<p>Each nested level is created magically when accessed, a process known as &#8220;auto-vivification&#8221; in perl.</p>
 <div class="section" id="working-without-nested-dict">
 <h2>Working without <cite>nested_dict</cite><a class="headerlink" href="#working-without-nested-dict" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://docs.python.org/2/library/collections.html#collections.defaultdict">defaultdict</a> from the python <a class="reference external" href="https://docs.python.org/2/library/collections.html">collections</a> module provides for one or (with some effort) two levels of nestedness
@@ -139,7 +139,7 @@ For example, here is a dictionary of <a class="reference external" href="https:/
 </pre></div>
 </div>
 </div></blockquote>
-<p>The syntax becomes rapidly more ugly with additional levels of nesting, and it is difficult to mix dictionaries with different levels of nestedness.</p>
+<p>However, the syntax becomes rapidly more ugly with additional levels of nesting, and it is difficult to mix dictionaries with different levels of nestedness.</p>
 </div>
 </div>
 <div class="section" id="how-to-use-nested-dict">
@@ -150,21 +150,21 @@ For example, here is a dictionary of <a class="reference external" href="https:/
 <div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
 <span class="n">nd</span><span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr1&quot;</span><span class="p">][</span><span class="s">&quot;+&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">311</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chromosomes&quot;</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;completed&quot;</span>
+<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chromosomes&quot;</span><span class="p">][</span><span class="s">&quot;Y&quot;</span><span class="p">][</span><span class="s">&quot;Male&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;2nd longest&quot;</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;3rd longest&quot;</span>
 
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">nd</span><span class="o">.</span><span class="n">iteritems_flat</span><span class="p">():</span>
-    <span class="k">print</span> <span class="s">&quot;</span><span class="si">%-30s</span><span class="s">==</span><span class="si">%20r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">nd</span><span class="o">.</span><span class="n">items_flat</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;</span><span class="si">%-50s</span><span class="s">==</span><span class="si">%20r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
 <p>Gives:</p>
 <blockquote>
-<div><div class="highlight-Python"><div class="highlight"><pre><span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chr3&#39;</span><span class="p">)</span>             <span class="o">==</span>       <span class="s">&#39;3rd longest&#39;</span>
-<span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chromosomes&#39;</span><span class="p">)</span>      <span class="o">==</span>         <span class="s">&#39;completed&#39;</span>
-<span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chr2&#39;</span><span class="p">)</span>             <span class="o">==</span>       <span class="s">&#39;2nd longest&#39;</span>
-<span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chr1&#39;</span><span class="p">,</span> <span class="s">&#39;+&#39;</span><span class="p">)</span>        <span class="o">==</span>                 <span class="mi">311</span>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chr3&#39;</span><span class="p">)</span>                                 <span class="o">==</span>       <span class="s">&#39;3rd longest&#39;</span>
+<span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chromosomes&#39;</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="s">&#39;Male&#39;</span><span class="p">)</span>             <span class="o">==</span>                <span class="bp">True</span>
+<span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chr2&#39;</span><span class="p">)</span>                                 <span class="o">==</span>       <span class="s">&#39;2nd longest&#39;</span>
+<span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chr1&#39;</span><span class="p">,</span> <span class="s">&#39;+&#39;</span><span class="p">)</span>                            <span class="o">==</span>                 <span class="mi">311</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -258,8 +258,10 @@ For example, if you know beforehand that your data involves a <strong>maximum</s
 </div>
 </div></blockquote>
 <p>This is less useful if you do not know beforehand how many levels of nesting you have.</p>
-<p>Instead, you can use <cite>iteritems_flat()</cite>, <cite>iterkeys_flat()</cite>, and <cite>itervalues_flat()</cite>. The <cite>_flat()</cite> functions
-are just like their normal counterparts except they compress all the nested keys into <a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple">tuple</a>s:</p>
+<p>Instead, you can use <code class="docutils literal"><span class="pre">items_flat()</span></code>, <code class="docutils literal"><span class="pre">keys_flat()</span></code>, and <code class="docutils literal"><span class="pre">values_flat()</span></code>.
+(<code class="docutils literal"><span class="pre">iteritems_flat()</span></code>, <code class="docutils literal"><span class="pre">iterkeys_flat()</span></code>, and <code class="docutils literal"><span class="pre">itervalues_flat()</span></code> are python2.7 style synonyms. )
+The <cite>_flat()</cite> functions are just like their normal counterparts except they compress all the nested
+keys into <a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple">tuple</a>s:</p>
 <blockquote>
 <div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
 <span class="n">nd</span><span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
@@ -268,7 +270,7 @@ are just like their normal counterparts except they compress all the nested keys
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;2nd longest&quot;</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;3rd longest&quot;</span>
 
-<span class="k">for</span> <span class="n">keys_as_tuple</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">nd</span><span class="o">.</span><span class="n">iteritems_flat</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">keys_as_tuple</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">nd</span><span class="o">.</span><span class="n">items_flat</span><span class="p">():</span>
     <span class="k">print</span> <span class="p">(</span><span class="s">&quot;</span><span class="si">%-30s</span><span class="s"> == </span><span class="si">%20r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">keys_as_tuple</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
 <span class="c">#   (&#39;mouse&#39;, &#39;chr3&#39;)              ==        &#39;3rd longest&#39;</span>
 <span class="c">#   (&#39;mouse&#39;, &#39;chromosomes&#39;)       ==          &#39;completed&#39;</span>

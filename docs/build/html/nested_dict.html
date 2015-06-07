@@ -147,6 +147,12 @@ fixed. For example,</p>
 <dl class="method">
 <dt id="nested_dict.nested_dict.iteritems_flat">
 <code class="descname">iteritems_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.iteritems_flat" title="Permalink to this definition">¶</a></dt>
+<dd><p>python 2.7 style synonym for <code class="docutils literal"><span class="pre">items_flat()</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nested_dict.nested_dict.items_flat">
+<code class="descname">items_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.items_flat" title="Permalink to this definition">¶</a></dt>
 <dd><p>iterate through values with nested keys flattened into a tuple</p>
 <p>For example,</p>
 <blockquote>
@@ -156,7 +162,7 @@ fixed. For example,</p>
 <span class="n">a</span><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">][</span><span class="s">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
 </pre></div>
 </div>
-<p>print list(a.iteritems_flat())</p>
+<p>print list(a.items_flat())</p>
 </div></blockquote>
 <p>Produces:</p>
 <blockquote>
@@ -171,6 +177,12 @@ fixed. For example,</p>
 <dl class="method">
 <dt id="nested_dict.nested_dict.iterkeys_flat">
 <code class="descname">iterkeys_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.iterkeys_flat" title="Permalink to this definition">¶</a></dt>
+<dd><p>python 2.7 style synonym for <code class="docutils literal"><span class="pre">keys_flat()</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nested_dict.nested_dict.keys_flat">
+<code class="descname">keys_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.keys_flat" title="Permalink to this definition">¶</a></dt>
 <dd><p>iterate through values with nested keys flattened into a tuple</p>
 <p>For example,</p>
 <blockquote>
@@ -179,7 +191,7 @@ fixed. For example,</p>
 <span class="n">a</span><span class="p">[</span><span class="s">&#39;1&#39;</span><span class="p">][</span><span class="s">&#39;2&#39;</span><span class="p">][</span><span class="s">&#39;3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">a</span><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">][</span><span class="s">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
 
-<span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">iterkeys_flat</span><span class="p">())</span>
+<span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">keys_flat</span><span class="p">())</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -194,6 +206,12 @@ fixed. For example,</p>
 <dl class="method">
 <dt id="nested_dict.nested_dict.itervalues_flat">
 <code class="descname">itervalues_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.itervalues_flat" title="Permalink to this definition">¶</a></dt>
+<dd><p>python 2.7 style synonym for <code class="docutils literal"><span class="pre">values_flat()</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nested_dict.nested_dict.values_flat">
+<code class="descname">values_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.values_flat" title="Permalink to this definition">¶</a></dt>
 <dd><p>iterate through values as a single list, without considering the degree of nesting</p>
 <p>For example,</p>
 <blockquote>
@@ -202,7 +220,7 @@ fixed. For example,</p>
 <span class="n">a</span><span class="p">[</span><span class="s">&#39;1&#39;</span><span class="p">][</span><span class="s">&#39;2&#39;</span><span class="p">][</span><span class="s">&#39;3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">a</span><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">][</span><span class="s">&#39;B&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
 
-<span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">itervalues_flat</span><span class="p">())</span>
+<span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">values_flat</span><span class="p">())</span>
 </pre></div>
 </div>
 </div></blockquote>
