@@ -103,7 +103,7 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p><cite>nested_dict</cite> provides dictionaries with multiple levels of nested-ness:</p>
+<p><code class="docutils literal"><span class="pre">nested_dict</span></code> provides dictionaries with multiple levels of nested-ness:</p>
 <blockquote>
 <div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -116,26 +116,19 @@
 </div></blockquote>
 <p>Each nested level is created magically when accessed, a process known as &#8220;auto-vivification&#8221; in perl.</p>
 <div class="section" id="working-without-nested-dict">
-<h2>Working without <cite>nested_dict</cite><a class="headerlink" href="#working-without-nested-dict" title="Permalink to this headline">¶</a></h2>
+<h2>Working without <code class="docutils literal"><span class="pre">nested_dict</span></code><a class="headerlink" href="#working-without-nested-dict" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://docs.python.org/2/library/collections.html#collections.defaultdict">defaultdict</a> from the python <a class="reference external" href="https://docs.python.org/2/library/collections.html">collections</a> module provides for one or (with some effort) two levels of nestedness
-For example, here is a dictionary of <a class="reference external" href="https://docs.python.org/2/library/sets.html">set</a>s with <a class="reference external" href="https://docs.python.org/2/library/collections.html#collections.defaultdict">defaultdict</a> :</p>
-<p>For one level of nesting:</p>
+For example, here is a <a class="reference external" href="https://docs.python.org/2/library/collections.html#collections.defaultdict">defaultdict</a>  of <a class="reference external" href="https://docs.python.org/2/library/sets.html">set</a>s:</p>
+<p>One level of nesting:</p>
 <blockquote>
-<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="c"># One level of nesting</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="n">one_level_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
 <span class="n">one_level_dict</span><span class="p">[</span><span class="s">&quot;1st group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">one_level_dict</span><span class="p">[</span><span class="s">&quot;2nd group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">one_level_dict</span><span class="p">[</span><span class="s">&quot;2nd group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>For two levels of nesting:</p>
-<blockquote>
-<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="c"># Two levels of nesting</span>
 <span class="n">two_level_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">))</span>
 <span class="n">two_level_dict</span><span class="p">[</span><span class="s">&quot;1st group&quot;</span><span class="p">][</span><span class="s">&quot;A&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">two_level_dict</span><span class="p">[</span><span class="s">&quot;2nd group&quot;</span><span class="p">][</span><span class="s">&quot;B&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">two_level_dict</span><span class="p">[</span><span class="s">&quot;2nd group&quot;</span><span class="p">][</span><span class="s">&quot;C&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -143,7 +136,8 @@ For example, here is a dictionary of <a class="reference external" href="https:/
 </div>
 </div>
 <div class="section" id="how-to-use-nested-dict">
-<h1>How to use <cite>nested_dict</cite><a class="headerlink" href="#how-to-use-nested-dict" title="Permalink to this headline">¶</a></h1>
+<h1>How to use <code class="docutils literal"><span class="pre">nested_dict</span></code><a class="headerlink" href="#how-to-use-nested-dict" title="Permalink to this headline">¶</a></h1>
+<p>Just use <code class="docutils literal"><span class="pre">nested_dict</span></code> as a drop in replacement for <code class="docutils literal"><span class="pre">dict</span></code></p>
 <div class="section" id="flexible-levels-of-nesting">
 <h2>Flexible levels of nesting<a class="headerlink" href="#flexible-levels-of-nesting" title="Permalink to this headline">¶</a></h2>
 <blockquote>
@@ -171,7 +165,14 @@ For example, here is a dictionary of <a class="reference external" href="https:/
 </div>
 <div class="section" id="fixed-levels-of-nesting-and-set-types">
 <h2>Fixed levels of nesting and set types<a class="headerlink" href="#fixed-levels-of-nesting-and-set-types" title="Permalink to this headline">¶</a></h2>
-<p>This is necessary if you want the nested dictionary to hold a collection (like the <a class="reference external" href="https://docs.python.org/2/library/sets.html">set</a> in the first example) or scalar such as <cite>int</cite> or <cite>str</cite> with useful default values.</p>
+<dl class="docutils">
+<dt>This is necessary if you want the nested dictionary to hold</dt>
+<dd><ul class="first last simple">
+<li>a collection (like the <a class="reference external" href="https://docs.python.org/2/library/sets.html">set</a> in the first example) or</li>
+<li>a scalar with useful default values such as <code class="docutils literal"><span class="pre">int</span></code> or <code class="docutils literal"><span class="pre">str</span></code>.</li>
+</ul>
+</dd>
+</dl>
 <div class="highlight-Python"><div class="highlight"><pre><span class="c">#   nested dict of lists</span>
 <span class="n">nd</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
@@ -236,8 +237,8 @@ For example, if you know beforehand that your data involves a <strong>maximum</s
 </div>
 </div>
 <div class="section" id="iterating-nested-dict">
-<h1>Iterating <cite>nested_dict()</cite><a class="headerlink" href="#iterating-nested-dict" title="Permalink to this headline">¶</a></h1>
-<p>You can use nested iterators to iterate through <cite>nested_dict</cite> just like ordinary python <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#typesmapping">dict</a>s</p>
+<h1>Iterating <code class="docutils literal"><span class="pre">nested_dict</span></code><a class="headerlink" href="#iterating-nested-dict" title="Permalink to this headline">¶</a></h1>
+<p>You can use nested iterators to iterate through <code class="docutils literal"><span class="pre">nested_dict</span></code> just like ordinary python <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#typesmapping">dict</a>s</p>
 <blockquote>
 <div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
 <span class="n">nd</span><span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
@@ -260,7 +261,7 @@ For example, if you know beforehand that your data involves a <strong>maximum</s
 <p>This is less useful if you do not know beforehand how many levels of nesting you have.</p>
 <p>Instead, you can use <code class="docutils literal"><span class="pre">items_flat()</span></code>, <code class="docutils literal"><span class="pre">keys_flat()</span></code>, and <code class="docutils literal"><span class="pre">values_flat()</span></code>.
 (<code class="docutils literal"><span class="pre">iteritems_flat()</span></code>, <code class="docutils literal"><span class="pre">iterkeys_flat()</span></code>, and <code class="docutils literal"><span class="pre">itervalues_flat()</span></code> are python2.7 style synonyms. )
-The <cite>_flat()</cite> functions are just like their normal counterparts except they compress all the nested
+The <code class="docutils literal"><span class="pre">_flat()</span></code> functions are just like their normal counterparts except they compress all the nested
 keys into <a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple">tuple</a>s:</p>
 <blockquote>
 <div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
@@ -282,8 +283,8 @@ keys into <a class="reference external" href="https://docs.python.org/2/library/
 </div>
 <div class="section" id="converting-back-to-dictionaries">
 <h1>Converting back to dictionaries<a class="headerlink" href="#converting-back-to-dictionaries" title="Permalink to this headline">¶</a></h1>
-<p>It is often useful to convert away the magic of <cite>nested_dict</cite>, for example, to <a class="reference external" href="https://docs.python.org/2/library/pickle.html">pickle</a> the dictionary.</p>
-<p>Use <cite>nested_dict.to_dict()</cite></p>
+<p>It is often useful to convert away the magic of <code class="docutils literal"><span class="pre">nested_dict</span></code>, for example, to <a class="reference external" href="https://docs.python.org/2/library/pickle.html">pickle</a> the dictionary.</p>
+<p>Use <code class="docutils literal"><span class="pre">nested_dict.to_dict()</span></code></p>
 <blockquote>
 <div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
 <span class="n">nd</span><span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>

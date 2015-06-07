@@ -2,7 +2,7 @@
 ##############################################################################
 Introduction
 ##############################################################################
-`nested_dict` provides dictionaries with multiple levels of nested-ness:
+``nested_dict`` provides dictionaries with multiple levels of nested-ness:
 
     .. <<Python
 
@@ -22,48 +22,37 @@ Introduction
 Each nested level is created magically when accessed, a process known as "auto-vivification" in perl.
 
 ******************************************************************************
-Working without `nested_dict`
+Working without ``nested_dict``
 ******************************************************************************
 
 `defaultdict  <https://docs.python.org/2/library/collections.html#collections.defaultdict>`__ from the python `collections  <https://docs.python.org/2/library/collections.html>`__ module provides for one or (with some effort) two levels of nestedness
-For example, here is a dictionary of `set  <https://docs.python.org/2/library/sets.html>`__\ s with `defaultdict  <https://docs.python.org/2/library/collections.html#collections.defaultdict>`__ :
+For example, here is a `defaultdict  <https://docs.python.org/2/library/collections.html#collections.defaultdict>`__  of `set  <https://docs.python.org/2/library/sets.html>`__\ s:
 
-For one level of nesting:
+One level of nesting:
 
     .. <<Python
 
     .. code-block:: Python
 
+        # One level of nesting
         from collections import defaultdict
         one_level_dict = defaultdict(set)
         one_level_dict["1st group"].add(3)
-        one_level_dict["2nd group"].add(4)
-        one_level_dict["2nd group"].add(5)
 
-    ..
-        Python
-
-For two levels of nesting:
-
-    .. <<Python
-
-    .. code-block:: Python
-
-        from collections import defaultdict
+        # Two levels of nesting
         two_level_dict = defaultdict(lambda: defaultdict(set))
         two_level_dict["1st group"]["A"].add(3)
-        two_level_dict["2nd group"]["B"].add(4)
-        two_level_dict["2nd group"]["C"].add(5)
 
     ..
         Python
-
 
 However, the syntax becomes rapidly more ugly with additional levels of nesting, and it is difficult to mix dictionaries with different levels of nestedness.
 
 ##############################################################################
-How to use `nested_dict`
+How to use ``nested_dict``
 ##############################################################################
+
+Just use ``nested_dict`` as a drop in replacement for ``dict``
 
 ******************************************************************************
 Flexible levels of nesting
@@ -106,7 +95,9 @@ Gives:
 Fixed levels of nesting and set types
 ******************************************************************************
 
-This is necessary if you want the nested dictionary to hold a collection (like the `set  <https://docs.python.org/2/library/sets.html>`__ in the first example) or scalar such as `int` or `str` with useful default values.
+This is necessary if you want the nested dictionary to hold 
+    * a collection (like the `set  <https://docs.python.org/2/library/sets.html>`__ in the first example) or 
+    * a scalar with useful default values such as ``int`` or ``str``.
 
 .. <<Python
 
@@ -186,11 +177,11 @@ For example, if you know beforehand that your data involves a **maximum** of fou
 
 
 ##############################################################################
-Iterating `nested_dict()`
+Iterating ``nested_dict``
 ##############################################################################
 
 
-You can use nested iterators to iterate through `nested_dict` just like ordinary python `dict  <https://docs.python.org/2/library/stdtypes.html#typesmapping>`__\ s
+You can use nested iterators to iterate through ``nested_dict`` just like ordinary python `dict  <https://docs.python.org/2/library/stdtypes.html#typesmapping>`__\ s
 
     .. <<Python
 
@@ -220,7 +211,7 @@ This is less useful if you do not know beforehand how many levels of nesting you
 
 Instead, you can use ``items_flat()``\ , ``keys_flat()``\ , and ``values_flat()``\ . 
 (``iteritems_flat()``\ , ``iterkeys_flat()``\ , and ``itervalues_flat()`` are python2.7 style synonyms. )
-The `_flat()` functions are just like their normal counterparts except they compress all the nested 
+The ``_flat()`` functions are just like their normal counterparts except they compress all the nested 
 keys into `tuple  <https://docs.python.org/2/library/functions.html#tuple>`__\ s:
 
 
@@ -251,9 +242,9 @@ Converting back to dictionaries
 ##############################################################################
 
 
-It is often useful to convert away the magic of `nested_dict`, for example, to `pickle  <https://docs.python.org/2/library/pickle.html>`__ the dictionary.
+It is often useful to convert away the magic of ``nested_dict``, for example, to `pickle  <https://docs.python.org/2/library/pickle.html>`__ the dictionary.
 
-Use `nested_dict.to_dict()`
+Use ``nested_dict.to_dict()``
 
 
     .. <<Python
