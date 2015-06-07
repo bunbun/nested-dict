@@ -59,7 +59,7 @@ setup(
     url="http://pypi.python.org/pypi/nested_dict",
     install_requires=[],
     setup_requires=[],
-    keywords=["dict", "defaultdict", "nested", "dictionary"],
+    keywords=["dict", "defaultdict", "nested", "dictionary", "auto-vivification"],
     license="MIT",
 
     classifiers=[

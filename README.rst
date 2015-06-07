@@ -8,7 +8,7 @@ Introduction
 
     .. code-block:: Python
 
-        from nested_dict import *
+        from nested_dict import nested_dict
 
         nd = nested_dict()
 
@@ -27,8 +27,6 @@ Working without ``nested_dict``
 
 `defaultdict  <https://docs.python.org/2/library/collections.html#collections.defaultdict>`__ from the python `collections  <https://docs.python.org/2/library/collections.html>`__ module provides for one or (with some effort) two levels of nestedness
 For example, here is a `defaultdict  <https://docs.python.org/2/library/collections.html#collections.defaultdict>`__  of `set  <https://docs.python.org/2/library/sets.html>`__\ s:
-
-One level of nesting:
 
     .. <<Python
 
@@ -146,6 +144,8 @@ For example, if you know beforehand that your data involves a **maximum** of fou
 .. <<Python
 
 .. code-block:: Python
+
+    from nested_dict import nested_dict
 
     nd4 = nested_dict(4)
     # OK: Assign to "string"
