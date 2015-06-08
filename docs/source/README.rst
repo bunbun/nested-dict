@@ -26,8 +26,8 @@ Drop in replacement for ``dict``
     ... for keys_as_tuple, value in nd.items_flat():
     ...    print ("%-20s == %r" % (keys_as_tuple, value))
     ...
-    (1, 'two')           == '1 / 2'
     ('one',)             == '1'
+    (1, 'two')           == '1 / 2'
     ('uno', 2, 'three')  == '1 / 2 / 3'
 
   ..
