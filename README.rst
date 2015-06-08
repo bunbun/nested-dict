@@ -1,3 +1,4 @@
+Source code at https://github.com/bunbun/nested-dict
 
 ##############################################################################
 Introduction
