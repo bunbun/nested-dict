@@ -5,7 +5,7 @@ nested_dict
 .. automodule:: nested_dict
 
 **************************
-nested_dict
+Class documentation
 **************************
 .. class:: nested_dict
 
