@@ -81,4 +81,8 @@ setup(
 )
 
 # python setup.py register
+# flake8 *.py tests --exclude=ez_setup.py --max-line-length=100
+# nosetests --with-coverage --cover-package nested_dict --cover-inclusive --cover-min-percentage 85
+# make -C docs html
+# git tag -a v1.5.1 -m "Version 1.5.1"
 # python setup.py sdist --format=gztar,zip upload
