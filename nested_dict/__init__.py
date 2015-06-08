@@ -4,5 +4,5 @@ from __future__ import division
 """
 `nested_dict` provides dictionaries with multiple levels of nested-ness:
 """
-__version__ = '1.5.2'
+__version__ = '1.5.3'
 from .implementation import nested_dict
