@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Introduction &mdash; nested_dict 1.5.1 documentation</title>
+  <title>nested_dict &mdash; nested_dict 1.5.1 documentation</title>
   
 
   
@@ -90,7 +90,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="#">Docs</a> &raquo;</li>
       
-    <li>Introduction</li>
+    <li><code class="docutils literal"><span class="pre">nested_dict</span></code></li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="_sources/index.txt" rel="nofollow"> View page source</a>
@@ -101,95 +101,73 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
+  <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
 <li>Source code at <a class="reference external" href="https://github.com/bunbun/nested-dict">https://github.com/bunbun/nested-dict</a></li>
 <li>Documentation at <a class="reference external" href="http://nested-dict.readthedocs.org">http://nested-dict.readthedocs.org</a></li>
 </ul>
 </div>
-<p><code class="docutils literal"><span class="pre">nested_dict</span></code> provides dictionaries with multiple levels of nested-ness:</p>
+<div class="section" id="nested-dict">
+<h1><code class="docutils literal"><span class="pre">nested_dict</span></code><a class="headerlink" href="#nested-dict" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">nested_dict</span></code> extends <code class="docutils literal"><span class="pre">defaultdict</span></code> to support python <code class="docutils literal"><span class="pre">dict</span></code> with multiple levels of nested-ness:</p>
+<div class="section" id="drop-in-replacement-for-dict">
+<h2>Drop in replacement for <code class="docutils literal"><span class="pre">dict</span></code><a class="headerlink" href="#drop-in-replacement-for-dict" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
-
-<span class="n">nd</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
-
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">][</span><span class="s">&quot;b&quot;</span><span class="p">][</span><span class="s">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">311</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;d&quot;</span><span class="p">][</span><span class="s">&quot;e&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">311</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>Each nested level is created magically when accessed, a process known as &#8220;auto-vivification&#8221; in perl.</p>
-<div class="section" id="working-without-nested-dict">
-<h2>Working without <code class="docutils literal"><span class="pre">nested_dict</span></code><a class="headerlink" href="#working-without-nested-dict" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://docs.python.org/2/library/collections.html#collections.defaultdict">defaultdict</a> from the python <a class="reference external" href="https://docs.python.org/2/library/collections.html">collections</a> module provides for one or (with some effort) two levels of nestedness
-For example, here is a <a class="reference external" href="https://docs.python.org/2/library/collections.html#collections.defaultdict">defaultdict</a>  of <a class="reference external" href="https://docs.python.org/2/library/sets.html">set</a>s:</p>
-<blockquote>
-<div><div class="highlight-Python"><div class="highlight"><pre><span class="c"># One level of nesting</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="n">one_level_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-<span class="n">one_level_dict</span><span class="p">[</span><span class="s">&quot;1st group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="c"># Two levels of nesting</span>
-<span class="n">two_level_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">))</span>
-<span class="n">two_level_dict</span><span class="p">[</span><span class="s">&quot;1st group&quot;</span><span class="p">][</span><span class="s">&quot;A&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>However, the syntax becomes rapidly more ugly with additional levels of nesting, and it is difficult to mix dictionaries with different levels of nestedness.</p>
-</div>
-</div>
-<div class="section" id="how-to-use-nested-dict">
-<h1>How to use <code class="docutils literal"><span class="pre">nested_dict</span></code><a class="headerlink" href="#how-to-use-nested-dict" title="Permalink to this headline">¶</a></h1>
-<p>Just use <code class="docutils literal"><span class="pre">nested_dict</span></code> as a drop in replacement for <code class="docutils literal"><span class="pre">dict</span></code></p>
-<div class="section" id="flexible-levels-of-nesting">
-<h2>Flexible levels of nesting<a class="headerlink" href="#flexible-levels-of-nesting" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
-<span class="n">nd</span><span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr1&quot;</span><span class="p">][</span><span class="s">&quot;+&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">311</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chromosomes&quot;</span><span class="p">][</span><span class="s">&quot;Y&quot;</span><span class="p">][</span><span class="s">&quot;Male&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;2nd longest&quot;</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;3rd longest&quot;</span>
-
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">nd</span><span class="o">.</span><span class="n">items_flat</span><span class="p">():</span>
-    <span class="k">print</span> <span class="s">&quot;</span><span class="si">%-50s</span><span class="s">==</span><span class="si">%20r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></blockquote>
-<p>Gives:</p>
-<blockquote>
-<div><div class="highlight-Python"><div class="highlight"><pre><span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chr3&#39;</span><span class="p">)</span>                                 <span class="o">==</span>       <span class="s">&#39;3rd longest&#39;</span>
-<span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chromosomes&#39;</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="s">&#39;Male&#39;</span><span class="p">)</span>             <span class="o">==</span>                <span class="bp">True</span>
-<span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chr2&#39;</span><span class="p">)</span>                                 <span class="o">==</span>       <span class="s">&#39;2nd longest&#39;</span>
-<span class="p">(</span><span class="s">&#39;mouse&#39;</span><span class="p">,</span> <span class="s">&#39;chr1&#39;</span><span class="p">,</span> <span class="s">&#39;+&#39;</span><span class="p">)</span>                            <span class="o">==</span>                 <span class="mi">311</span>
+<div><div class="highlight-Pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="p">[</span><span class="s">&quot;one&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;1&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&quot;two&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;1 / 2&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="p">[</span><span class="s">&quot;uno&quot;</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s">&quot;three&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;1 / 2 / 3&quot;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">... </span><span class="k">for</span> <span class="n">keys_as_tuple</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">nd</span><span class="o">.</span><span class="n">items_flat</span><span class="p">():</span>
+<span class="gp">... </span>   <span class="k">print</span> <span class="p">(</span><span class="s">&quot;</span><span class="si">%-20s</span><span class="s"> == </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">keys_as_tuple</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="go">(1, &#39;two&#39;)           == &#39;1 / 2&#39;</span>
+<span class="go">(&#39;one&#39;,)             == &#39;1&#39;</span>
+<span class="go">(&#39;uno&#39;, 2, &#39;three&#39;)  == &#39;1 / 2 / 3&#39;</span>
 </pre></div>
 </div>
 </div></blockquote>
 </div>
-<div class="section" id="fixed-levels-of-nesting-and-set-types">
-<h2>Fixed levels of nesting and set types<a class="headerlink" href="#fixed-levels-of-nesting-and-set-types" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>This is necessary if you want the nested dictionary to hold</dt>
+<div class="section" id="specifying-the-contained-type">
+<h2>Specifying the contained type<a class="headerlink" href="#specifying-the-contained-type" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt>If you want the nested dictionary to hold</dt>
 <dd><ul class="first last simple">
 <li>a collection (like the <a class="reference external" href="https://docs.python.org/2/library/sets.html">set</a> in the first example) or</li>
 <li>a scalar with useful default values such as <code class="docutils literal"><span class="pre">int</span></code> or <code class="docutils literal"><span class="pre">str</span></code>.</li>
 </ul>
 </dd>
 </dl>
-<div class="highlight-Python"><div class="highlight"><pre><span class="c">#   nested dict of lists</span>
+</div></blockquote>
+<div class="section" id="dict-of-lists">
+<h3><em>dict</em> of <code class="docutils literal"><span class="pre">list</span></code>s<a class="headerlink" href="#dict-of-lists" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="c">#   nested dict of lists</span>
 <span class="n">nd</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;human&quot;</span><span class="p">][</span><span class="s">&quot;1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-
-<span class="c">#   nested dict of sets</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="dict-of-sets">
+<h3><em>dict</em> of <code class="docutils literal"><span class="pre">set</span></code>s<a class="headerlink" href="#dict-of-sets" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="c">#   nested dict of sets</span>
 <span class="n">nd</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">set</span><span class="p">)</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;human&quot;</span><span class="p">][</span><span class="s">&quot;1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">)</span>
-
-<span class="c">#   nested dict of ints</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="dict-of-ints">
+<h3><em>dict</em> of <code class="docutils literal"><span class="pre">int</span></code>s<a class="headerlink" href="#dict-of-ints" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="c">#   nested dict of ints</span>
 <span class="n">nd</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;2&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">4</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;human&quot;</span><span class="p">][</span><span class="s">&quot;1&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">5</span>
@@ -197,9 +175,14 @@ For example, here is a <a class="reference external" href="https://docs.python.o
 
 <span class="n">nd</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 <span class="c">#{&#39;human&#39;: {&#39;1&#39;: 11}, &#39;mouse&#39;: {&#39;2&#39;: 4}}</span>
-
-
-<span class="c">#   nested dict of strings</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="dict-of-strs">
+<h3><em>dict</em> of <code class="docutils literal"><span class="pre">str</span></code>s<a class="headerlink" href="#dict-of-strs" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="c">#   nested dict of strings</span>
 <span class="n">nd</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;2&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="s">&quot;a&quot;</span> <span class="o">*</span> <span class="mi">4</span>
 <span class="n">nd</span><span class="p">[</span><span class="s">&quot;human&quot;</span><span class="p">][</span><span class="s">&quot;1&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="s">&quot;b&quot;</span> <span class="o">*</span> <span class="mi">5</span>
@@ -209,100 +192,90 @@ For example, here is a <a class="reference external" href="https://docs.python.o
 <span class="c">#{&#39;human&#39;: {&#39;1&#39;: &#39;bbbbbcccccc&#39;}, &#39;mouse&#39;: {&#39;2&#39;: &#39;aaaa&#39;}}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="set-maximum-nesting">
-<h2>Set maximum nesting<a class="headerlink" href="#set-maximum-nesting" title="Permalink to this headline">¶</a></h2>
-<p>You can also specify a maximum level of nesting even if you do not want to specify the stored type.
-For example, if you know beforehand that your data involves a <strong>maximum</strong> of four nested sub levels, you can add this (very minimal) constraint ahead of time:</p>
-<div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
-
-<span class="n">nd4</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="c"># OK: Assign to &quot;string&quot;</span>
-<span class="n">nd4</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;a&quot;</span>
-
-<span class="c"># Bad: Five levels is one too many</span>
-<span class="n">nd4</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">][</span><span class="s">&quot;four&quot;</span><span class="p">][</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;b&quot;</span>
-<span class="c">#</span>
-<span class="c"># KeyError</span>
-<span class="c"># ----&gt; nd4[1][2][3][&quot;four&quot;][5]=&quot;b&quot;</span>
-<span class="c">#</span>
-<span class="c"># KeyError: &#39;four&#39;</span>
-<span class="c">#</span>
-
-
-<span class="c"># OK: Assign to fewer levels is fine</span>
-<span class="n">nd4</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&quot;two&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
-
-<span class="c"># But like with normal dicts, you can&#39;t &quot;extend a value&quot; later</span>
-<span class="n">nd4</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&quot;two&quot;</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
-
-<span class="c"># TypeError</span>
-<span class="c"># ----&gt; nd4[1][&quot;two&quot;][4] = 3</span>
-<span class="c">#</span>
-<span class="c"># TypeError: &#39;int&#39; object does not support item assignment</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="iterating-nested-dict">
-<h1>Iterating <code class="docutils literal"><span class="pre">nested_dict</span></code><a class="headerlink" href="#iterating-nested-dict" title="Permalink to this headline">¶</a></h1>
-<p>You can use nested iterators to iterate through <code class="docutils literal"><span class="pre">nested_dict</span></code> just like ordinary python <a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#typesmapping">dict</a>s</p>
-<blockquote>
-<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
-<span class="n">nd</span><span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr1&quot;</span><span class="p">][</span><span class="s">&quot;+&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">311</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chromosomes&quot;</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;completed&quot;</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;2nd longest&quot;</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;3rd longest&quot;</span>
-
-<span class="k">for</span> <span class="n">key1</span><span class="p">,</span> <span class="n">value1</span> <span class="ow">in</span> <span class="n">nd</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="k">for</span> <span class="n">key2</span><span class="p">,</span> <span class="n">value2</span> <span class="ow">in</span> <span class="n">value1</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">print</span> <span class="p">(</span><span class="n">key1</span><span class="p">,</span> <span class="n">key2</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value2</span><span class="p">))</span>
-
-<span class="c">#   (&#39;mouse&#39;, &#39;chr3&#39;, &#39;3rd longest&#39;)</span>
-<span class="c">#   (&#39;mouse&#39;, &#39;chromosomes&#39;, &#39;completed&#39;)</span>
-<span class="c">#   (&#39;mouse&#39;, &#39;chr2&#39;, &#39;2nd longest&#39;)</span>
-<span class="c">#   (&#39;mouse&#39;, &#39;chr1&#39;, &#39;{&quot;+&quot;: 311}&#39;)</span>
-</pre></div>
-</div>
 </div></blockquote>
-<p>This is less useful if you do not know beforehand how many levels of nesting you have.</p>
-<p>Instead, you can use <code class="docutils literal"><span class="pre">items_flat()</span></code>, <code class="docutils literal"><span class="pre">keys_flat()</span></code>, and <code class="docutils literal"><span class="pre">values_flat()</span></code>.
-(<code class="docutils literal"><span class="pre">iteritems_flat()</span></code>, <code class="docutils literal"><span class="pre">iterkeys_flat()</span></code>, and <code class="docutils literal"><span class="pre">itervalues_flat()</span></code> are python2.7 style synonyms. )
-The <code class="docutils literal"><span class="pre">_flat()</span></code> functions are just like their normal counterparts except they compress all the nested
-keys into <a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple">tuple</a>s:</p>
+</div>
+</div>
+</div>
+<div class="section" id="iterating-through-nested-dict">
+<h1>Iterating through <code class="docutils literal"><span class="pre">nested_dict</span></code><a class="headerlink" href="#iterating-through-nested-dict" title="Permalink to this headline">¶</a></h1>
+<p>Iterating through deep or unevenly nested dictionaries is a bit of a pain without recursion.
+<code class="docutils literal"><span class="pre">nested</span> <span class="pre">dict</span></code> allows you to <strong>flatten</strong> the nested levels into <a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple">tuple</a>s before iteration.</p>
+<p>You do not need to know beforehand how many levels of nesting you have:</p>
 <blockquote>
 <div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
 <span class="n">nd</span><span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr1&quot;</span><span class="p">][</span><span class="s">&quot;+&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">311</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chromosomes&quot;</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;completed&quot;</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;2nd longest&quot;</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;3rd longest&quot;</span>
+<span class="n">nd</span><span class="p">[</span><span class="s">&quot;one&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;1&quot;</span>
+<span class="n">nd</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&quot;two&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;1 / 2&quot;</span>
+<span class="n">nd</span><span class="p">[</span><span class="s">&quot;uno&quot;</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s">&quot;three&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;1 / 2 / 3&quot;</span>
 
 <span class="k">for</span> <span class="n">keys_as_tuple</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">nd</span><span class="o">.</span><span class="n">items_flat</span><span class="p">():</span>
-    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;</span><span class="si">%-30s</span><span class="s"> == </span><span class="si">%20r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">keys_as_tuple</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
-<span class="c">#   (&#39;mouse&#39;, &#39;chr3&#39;)              ==        &#39;3rd longest&#39;</span>
-<span class="c">#   (&#39;mouse&#39;, &#39;chromosomes&#39;)       ==          &#39;completed&#39;</span>
-<span class="c">#   (&#39;mouse&#39;, &#39;chr2&#39;)              ==        &#39;2nd longest&#39;</span>
-<span class="c">#   (&#39;mouse&#39;, &#39;chr1&#39;, &#39;+&#39;)         ==                  311</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;</span><span class="si">%-20s</span><span class="s"> == </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">keys_as_tuple</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+
+<span class="c">#   (1, &#39;two&#39;)           == &#39;1 / 2&#39;</span>
+<span class="c">#   (&#39;one&#39;,)             == &#39;1&#39;</span>
+<span class="c">#   (&#39;uno&#39;, 2, &#39;three&#39;)  == &#39;1 / 2 / 3&#39;</span>
 </pre></div>
 </div>
 </div></blockquote>
+<dl class="docutils">
+<dt>nested_dict provides</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="nested_dict.html#items-flat"><span>items_flat()</span></a></li>
+<li><a class="reference internal" href="nested_dict.html#keys-flat"><span>keys_flat()</span></a></li>
+<li><a class="reference internal" href="nested_dict.html#values-flat"><span>values_flat()</span></a></li>
+</ul>
+</dd>
+</dl>
+<p>(<a class="reference internal" href="nested_dict.html#iteritems-flat"><span>iteritems_flat()</span></a>, <a class="reference internal" href="nested_dict.html#iterkeys-flat"><span>iterkeys_flat()</span></a>, and <a class="reference internal" href="nested_dict.html#itervalues-flat"><span>itervalues_flat()</span></a> are python 2.7-style synonyms. )</p>
 </div>
-<div class="section" id="converting-back-to-dictionaries">
-<h1>Converting back to dictionaries<a class="headerlink" href="#converting-back-to-dictionaries" title="Permalink to this headline">¶</a></h1>
-<p>It is often useful to convert away the magic of <code class="docutils literal"><span class="pre">nested_dict</span></code>, for example, to <a class="reference external" href="https://docs.python.org/2/library/pickle.html">pickle</a> the dictionary.</p>
-<p>Use <code class="docutils literal"><span class="pre">nested_dict.to_dict()</span></code></p>
+<div class="section" id="converting-to-from-dictionaries">
+<h1>Converting to / from dictionaries<a class="headerlink" href="#converting-to-from-dictionaries" title="Permalink to this headline">¶</a></h1>
+<p>The magic of  <code class="docutils literal"><span class="pre">nested_dict</span></code> sometimes gets in the way (of <a class="reference external" href="https://docs.python.org/2/library/pickle.html">pickle</a>ing for example).</p>
+<dl class="docutils">
+<dt>We can convert to and from a vanilla python <code class="docutils literal"><span class="pre">dict</span></code> using</dt>
+<dd><ul class="first simple">
+<li><a class="reference internal" href="nested_dict.html#to-dict"><span>nested_dict.to_dict()</span></a></li>
+<li><a class="reference internal" href="nested_dict.html#nested-dict-init"><span>nested_dict constructor</span></a></li>
+</ul>
+<div class="last highlight-Pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="p">[</span><span class="s">&quot;one&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&quot;two&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;1 / 2&quot;</span>
+
+<span class="go">#</span>
+<span class="go">#   convert nested_dict -&gt; dict and pickle</span>
+<span class="go">#</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="go">{1: {&#39;two&#39;: &#39;1 / 2&#39;}, &#39;one&#39;: 1}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binary_representation</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">nd</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+
+<span class="go">#</span>
+<span class="go">#   convert dict -&gt; nested_dict</span>
+<span class="go">#</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">normal_dict</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">binary_representation</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_nd</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">(</span><span class="n">normal_dict</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span> <span class="o">==</span> <span class="n">new_nd</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="defaultdict">
+<h1><code class="docutils literal"><span class="pre">defaultdict</span></code><a class="headerlink" href="#defaultdict" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">nested_dict</span></code> extends <a class="reference external" href="https://docs.python.org/2/library/collections.html#collections.defaultdict">collections.defaultdict</a></p>
+<p>You can get arbitrarily-nested &#8220;auto-vivifying&#8221; dictionaries using <a class="reference external" href="https://docs.python.org/2/library/collections.html#collections.defaultdict">defaultdict</a>.</p>
 <blockquote>
-<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">nested_dict</span> <span class="kn">import</span> <span class="n">nested_dict</span>
-<span class="n">nd</span><span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chr1&quot;</span><span class="p">][</span><span class="s">&quot;+&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">311</span>
-<span class="n">nd</span><span class="p">[</span><span class="s">&quot;mouse&quot;</span><span class="p">][</span><span class="s">&quot;chromosomes&quot;</span><span class="p">]</span><span class="o">=</span><span class="s">&quot;completed&quot;</span>
-<span class="n">nd</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-<span class="c"># {&#39;mouse&#39;: {&#39;chr1&#39;: {&#39;+&#39;: 311}, &#39;chromosomes&#39;: &#39;completed&#39;}}</span>
+<div><div class="highlight-Python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="n">nested_dict</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">nested_dict</span><span class="p">)</span>
+<span class="n">nd</span> <span class="o">=</span> <span class="n">nested_dict</span><span class="p">()</span>
+<span class="n">nd</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="s">&quot;three&quot;</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">nd</span><span class="p">[</span><span class="s">&quot;one&quot;</span><span class="p">][</span><span class="s">&quot;two&quot;</span><span class="p">][</span><span class="s">&quot;three&quot;</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
 </pre></div>
 </div>
 </div></blockquote>
+<p>However, only <code class="docutils literal"><span class="pre">nested_dict</span></code> supports a <code class="docutils literal"><span class="pre">dict</span></code> of <code class="docutils literal"><span class="pre">dict</span></code> of <code class="docutils literal"><span class="pre">sets</span></code> etc.</p>
 <div class="toctree-wrapper compound" id="class-documentation">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="nested_dict.html">nested_dict</a><ul class="simple">

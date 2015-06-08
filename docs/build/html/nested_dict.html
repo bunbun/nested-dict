@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="nested_dict 1.5.1 documentation" href="index.html"/>
-        <link rel="prev" title="Introduction" href="index.html"/> 
+        <link rel="prev" title="nested_dict" href="index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -108,14 +108,18 @@
 <dl class="class">
 <dt id="nested_dict.nested_dict">
 <em class="property">class </em><code class="descclassname">nested_dict.</code><code class="descname">nested_dict</code><a class="reference internal" href="_modules/nested_dict/implementation.html#nested_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nested_dict.nested_dict" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd></dd></dl>
+
+<blockquote id="nested-dict-init">
+<div><dl class="method">
 <dt id="nested_dict.nested_dict.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><span class="optional">[</span><em>nested_level</em>, <em>value_type</em><span class="optional">]</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nested_dict/implementation.html#nested_dict.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nested_dict.nested_dict.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nested_dict.</code><code class="descname">__init__</code><span class="sig-paren">(</span><span class="optional">[</span><em>existing_dict | nested_level</em>, <em>value_type</em><span class="optional">]</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nested_dict/implementation.html#nested_dict.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nested_dict.nested_dict.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>existing_dict</strong> &#8211; an existing <code class="docutils literal"><span class="pre">dict</span></code> to be converted into a <code class="docutils literal"><span class="pre">nested_dict</span></code></li>
 <li><strong>nested_level</strong> &#8211; the level of nestedness in the dictionary</li>
 <li><strong>collection_type</strong> &#8211; the type of the values held in the dictionary</li>
 </ul>
@@ -144,15 +148,19 @@ fixed. For example,</p>
 </div></blockquote>
 </dd></dl>
 
-<dl class="method">
-<dt id="nested_dict.nested_dict.iteritems_flat">
-<code class="descname">iteritems_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.iteritems_flat" title="Permalink to this definition">¶</a></dt>
+</div></blockquote>
+<blockquote id="iteritems-flat">
+<div><dl class="method">
+<dt id="nested_dict.iteritems_flat">
+<code class="descclassname">nested_dict.</code><code class="descname">iteritems_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.iteritems_flat" title="Permalink to this definition">¶</a></dt>
 <dd><p>python 2.7 style synonym for <code class="docutils literal"><span class="pre">items_flat()</span></code></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="nested_dict.nested_dict.items_flat">
-<code class="descname">items_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.items_flat" title="Permalink to this definition">¶</a></dt>
+</div></blockquote>
+<blockquote id="items-flat">
+<div><dl class="method">
+<dt id="nested_dict.items_flat">
+<code class="descclassname">nested_dict.</code><code class="descname">items_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.items_flat" title="Permalink to this definition">¶</a></dt>
 <dd><p>iterate through values with nested keys flattened into a tuple</p>
 <p>For example,</p>
 <blockquote>
@@ -174,15 +182,19 @@ fixed. For example,</p>
 </div></blockquote>
 </dd></dl>
 
-<dl class="method">
-<dt id="nested_dict.nested_dict.iterkeys_flat">
-<code class="descname">iterkeys_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.iterkeys_flat" title="Permalink to this definition">¶</a></dt>
+</div></blockquote>
+<blockquote id="iterkeys-flat">
+<div><dl class="method">
+<dt id="nested_dict.iterkeys_flat">
+<code class="descclassname">nested_dict.</code><code class="descname">iterkeys_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.iterkeys_flat" title="Permalink to this definition">¶</a></dt>
 <dd><p>python 2.7 style synonym for <code class="docutils literal"><span class="pre">keys_flat()</span></code></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="nested_dict.nested_dict.keys_flat">
-<code class="descname">keys_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.keys_flat" title="Permalink to this definition">¶</a></dt>
+</div></blockquote>
+<blockquote id="keys-flat">
+<div><dl class="method">
+<dt id="nested_dict.keys_flat">
+<code class="descclassname">nested_dict.</code><code class="descname">keys_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.keys_flat" title="Permalink to this definition">¶</a></dt>
 <dd><p>iterate through values with nested keys flattened into a tuple</p>
 <p>For example,</p>
 <blockquote>
@@ -203,15 +215,19 @@ fixed. For example,</p>
 </div></blockquote>
 </dd></dl>
 
-<dl class="method">
-<dt id="nested_dict.nested_dict.itervalues_flat">
-<code class="descname">itervalues_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.itervalues_flat" title="Permalink to this definition">¶</a></dt>
+</div></blockquote>
+<blockquote id="itervalues-flat">
+<div><dl class="method">
+<dt id="nested_dict.itervalues_flat">
+<code class="descclassname">nested_dict.</code><code class="descname">itervalues_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.itervalues_flat" title="Permalink to this definition">¶</a></dt>
 <dd><p>python 2.7 style synonym for <code class="docutils literal"><span class="pre">values_flat()</span></code></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="nested_dict.nested_dict.values_flat">
-<code class="descname">values_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.values_flat" title="Permalink to this definition">¶</a></dt>
+</div></blockquote>
+<blockquote id="values-flat">
+<div><dl class="method">
+<dt id="nested_dict.values_flat">
+<code class="descclassname">nested_dict.</code><code class="descname">values_flat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.values_flat" title="Permalink to this definition">¶</a></dt>
 <dd><p>iterate through values as a single list, without considering the degree of nesting</p>
 <p>For example,</p>
 <blockquote>
@@ -232,9 +248,11 @@ fixed. For example,</p>
 </div></blockquote>
 </dd></dl>
 
-<dl class="method">
-<dt id="nested_dict.nested_dict.to_dict">
-<code class="descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.to_dict" title="Permalink to this definition">¶</a></dt>
+</div></blockquote>
+<blockquote id="to-dict">
+<div><dl class="method">
+<dt id="nested_dict.to_dict">
+<code class="descclassname">nested_dict.</code><code class="descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts the nested dictionary to a nested series of standard <code class="docutils literal"><span class="pre">dict</span></code> objects</p>
 <p>For example,</p>
 <blockquote>
@@ -257,8 +275,8 @@ fixed. For example,</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="nested_dict.nested_dict.__str__">
-<code class="descname">__str__</code><span class="sig-paren">(</span><span class="optional">[</span><em>indent</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.nested_dict.__str__" title="Permalink to this definition">¶</a></dt>
+<dt id="nested_dict.__str__">
+<code class="descclassname">nested_dict.</code><code class="descname">__str__</code><span class="sig-paren">(</span><span class="optional">[</span><em>indent</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#nested_dict.__str__" title="Permalink to this definition">¶</a></dt>
 <dd><p>The dictionary formatted as a string</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -299,8 +317,7 @@ fixed. For example,</p>
 </dl>
 </dd></dl>
 
-</dd></dl>
-
+</div></blockquote>
 </div>
 <div class="section" id="acknowledgements">
 <h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
@@ -329,7 +346,7 @@ for <strong>source</strong> distributions.</p>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="index.html" class="btn btn-neutral" title="Introduction"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="nested_dict"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

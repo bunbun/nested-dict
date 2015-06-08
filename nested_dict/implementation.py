@@ -139,6 +139,24 @@ def _nested_levels(level, nested_type):
     return nested_type
 
 
+if sys.hexversion < 0x03000000:
+    iteritems = dict.iteritems
+else:
+    iteritems = dict.items
+
+# _________________________________________________________________________________________
+#
+#   nested_dict
+#
+# _________________________________________________________________________________________
+def nested_dict_from_dict(orig_dict, nd):
+    for key, value in iteritems(orig_dict):
+        if isinstance(value, (dict,)):
+            nd[key] = nested_dict_from_dict(value, nested_dict())
+        else:
+            nd[key] = value
+    return nd
+
 # _________________________________________________________________________________________
 #
 #   nested_dict
@@ -147,21 +165,30 @@ def _nested_levels(level, nested_type):
 class nested_dict(_recursive_dict):
     def __init__(self, *param):
         """
-        If parameters
+        Takes one or two parameters
+            1) int, [TYPE]
+            1) dict
         """
         if not len(param):
             defaultdict.__init__(self, nested_dict)
-        else:
-            if len(param) in (1, 2):
-                if len(param) == 2:
-                    level, nested_type = param
-                else:
-                    level, nested_type = param[0], any_type()
-                if not isinstance(level, int):
-                    raise Exception("nested_dict should be initialised with the "
-                                    "number of nested levels and (optionally) the "
-                                    "type held in the nested_dict")
-                defaultdict.__init__(self, _nested_levels(level, nested_type))
-            else:
-                raise Exception(  "nested_dict should be initialised with the number of "
-                                  "nested levels and the type held in the nested_dict")
+            return
+
+        if len(param) == 1:
+            # int = level
+            if isinstance(param[0], int):
+                defaultdict.__init__(self, _nested_levels(param[0], any_type()))
+                return
+            # existing dict
+            if isinstance(param[0], dict):
+                defaultdict.__init__(self, nested_dict)
+                nested_dict_from_dict(param[0], self)
+                return
+
+        if len(param) == 2:
+            if isinstance(param[0], int):
+                defaultdict.__init__(self, _nested_levels(*param))
+                return
+
+        raise Exception("nested_dict should be initialised with either "
+                        "1) the number of nested levels and an optional type, or "
+                        "2) an existing dict to be converted into a nested dict.")

@@ -51,7 +51,7 @@ nested_dict_version = parse_version(os.path.join("nested_dict", "__init__.py"))
 setup(
     name="nested_dict",
     version=nested_dict_version,
-    description="An example Python package to simulate Kingman's coalescent",
+    description="Python dictionary with automatic and arbitrary levels of nestedness",
     long_description=nested_dict_readme,
     packages=["nested_dict"],
     author='Leo Goodstadt',
@@ -59,7 +59,7 @@ setup(
     url="http://pypi.python.org/pypi/nested_dict",
     install_requires=[],
     setup_requires=[],
-    keywords=["dict", "defaultdict", "nested", "dictionary", "auto-vivification"],
+    keywords=["nested", "dict", "defaultdict", "dictionary", "auto-vivification"],
     license="MIT",
 
     classifiers=[
@@ -70,13 +70,21 @@ setup(
         "Programming Language :: Python :: 3.1",
         "Programming Language :: Python :: 3.2",
         "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: Implementation :: PyPy",
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: End Users/Desktop",
+        "Intended Audience :: Science/Research",
+        "Intended Audience :: Financial and Insurance Industry",
         "Intended Audience :: Developers",
         'Intended Audience :: Information Technology',
         "License :: OSI Approved :: MIT License",
         "Topic :: Scientific/Engineering",
+        "Topic :: Software Development",
         "Topic :: Software Development :: Libraries",
+        "Topic :: Scientific/Engineering",
+        "Topic :: Utilities",
     ],
 )
 

@@ -9,8 +9,11 @@ Class documentation
 **************************
 .. class:: nested_dict
 
-    .. method:: nested_dict.__init__([nested_level, value_type])
+.. _nested_dict.init:
 
+    .. method:: nested_dict.__init__([existing_dict | nested_level, value_type])
+
+        :param existing_dict: an existing ``dict`` to be converted into a ``nested_dict``
         :param nested_level: the level of nestedness in the dictionary
         :param collection_type: the type of the values held in the dictionary
 
@@ -43,10 +46,13 @@ Class documentation
             ..
                 Python
 
+.. _iteritems_flat:
 
     .. method:: iteritems_flat()
 
         python 2.7 style synonym for ``items_flat()``
+
+.. _items_flat:
 
     .. method:: items_flat()
 
@@ -71,9 +77,13 @@ Class documentation
                         (('A', 'B'),        15)
                 ]
 
+.. _iterkeys_flat:
+
     .. method:: iterkeys_flat()
 
         python 2.7 style synonym for ``keys_flat()``
+
+.. _keys_flat:
 
     .. method:: keys_flat()
 
@@ -96,10 +106,13 @@ Class documentation
 
                 [('1', '2', '3'), ('A', 'B')]
 
+.. _itervalues_flat:
 
     .. method:: itervalues_flat()
 
         python 2.7 style synonym for ``values_flat()``
+
+.. _values_flat:
 
     .. method:: values_flat()
 
@@ -122,6 +135,7 @@ Class documentation
 
                 [3, 15]
 
+.. _to_dict:
 
     .. method:: to_dict()
 

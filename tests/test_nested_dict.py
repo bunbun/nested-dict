@@ -192,7 +192,12 @@ class Test_nested_dict_list(unittest.TestCase):
         a = nested_dict.nested_dict()
         a['1']['2']['3'] = 3
         a['A']['B'] = 15
-        self.assertEqual(a.to_dict(), {'1': {'2': {'3': 3}}, 'A': {'B': 15}})
+
+        normal_dict = a.to_dict()
+        self.assertEqual(normal_dict, {'1': {'2': {'3': 3}}, 'A': {'B': 15}})
+
+        b = nested_dict.nested_dict(normal_dict)
+        self.assertEqual(b, {'1': {'2': {'3': 3}}, 'A': {'B': 15}})
 
     def test_str(self):
         """

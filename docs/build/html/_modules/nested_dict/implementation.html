@@ -243,6 +243,24 @@
     <span class="k">return</span> <span class="n">nested_type</span>
 
 
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">hexversion</span> <span class="o">&lt;</span> <span class="mh">0x03000000</span><span class="p">:</span>
+    <span class="n">iteritems</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">iteritems</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">iteritems</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">items</span>
+
+<span class="c"># _________________________________________________________________________________________</span>
+<span class="c">#</span>
+<span class="c">#   nested_dict</span>
+<span class="c">#</span>
+<span class="c"># _________________________________________________________________________________________</span>
+<span class="k">def</span> <span class="nf">nested_dict_from_dict</span><span class="p">(</span><span class="n">orig_dict</span><span class="p">,</span> <span class="n">nd</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">iteritems</span><span class="p">(</span><span class="n">orig_dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,)):</span>
+            <span class="n">nd</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">nested_dict_from_dict</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">nested_dict</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nd</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">nd</span>
+
 <span class="c"># _________________________________________________________________________________________</span>
 <span class="c">#</span>
 <span class="c">#   nested_dict</span>
@@ -251,24 +269,33 @@
 <div class="viewcode-block" id="nested_dict"><a class="viewcode-back" href="../../nested_dict.html#nested_dict.nested_dict">[docs]</a><span class="k">class</span> <span class="nc">nested_dict</span><span class="p">(</span><span class="n">_recursive_dict</span><span class="p">):</span>
 <div class="viewcode-block" id="nested_dict.__init__"><a class="viewcode-back" href="../../nested_dict.html#nested_dict.nested_dict.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">param</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        If parameters</span>
+<span class="sd">        Takes one or two parameters</span>
+<span class="sd">            1) int, [TYPE]</span>
+<span class="sd">            1) dict</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
             <span class="n">defaultdict</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nested_dict</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                    <span class="n">level</span><span class="p">,</span> <span class="n">nested_type</span> <span class="o">=</span> <span class="n">param</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">level</span><span class="p">,</span> <span class="n">nested_type</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">any_type</span><span class="p">()</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;nested_dict should be initialised with the &quot;</span>
-                                    <span class="s">&quot;number of nested levels and (optionally) the &quot;</span>
-                                    <span class="s">&quot;type held in the nested_dict&quot;</span><span class="p">)</span>
-                <span class="n">defaultdict</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_nested_levels</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">nested_type</span><span class="p">))</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>  <span class="s">&quot;nested_dict should be initialised with the number of &quot;</span>
-                                  <span class="s">&quot;nested levels and the type held in the nested_dict&quot;</span><span class="p">)</span></div></div>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c"># int = level</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">defaultdict</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_nested_levels</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">any_type</span><span class="p">()))</span>
+                <span class="k">return</span>
+            <span class="c"># existing dict</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">defaultdict</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nested_dict</span><span class="p">)</span>
+                <span class="n">nested_dict_from_dict</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="p">)</span>
+                <span class="k">return</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">defaultdict</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_nested_levels</span><span class="p">(</span><span class="o">*</span><span class="n">param</span><span class="p">))</span>
+                <span class="k">return</span>
+
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;nested_dict should be initialised with either &quot;</span>
+                        <span class="s">&quot;1) the number of nested levels and an optional type, or &quot;</span>
+                        <span class="s">&quot;2) an existing dict to be converted into a nested dict.&quot;</span><span class="p">)</span></div></div>
 </pre></div>
 
           </div>
