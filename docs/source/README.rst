@@ -1,7 +1,10 @@
 ##############################################################################
 Introduction
 ##############################################################################
-Source code at https://github.com/bunbun/nested-dict
+.. note ::
+
+    * Source code at https://github.com/bunbun/nested-dict
+    * Documentation at http://nested-dict.readthedocs.org
 
 ``nested_dict`` provides dictionaries with multiple levels of nested-ness:
 
@@ -94,8 +97,8 @@ Gives:
 Fixed levels of nesting and set types
 ******************************************************************************
 
-This is necessary if you want the nested dictionary to hold 
-    * a collection (like the `set  <https://docs.python.org/2/library/sets.html>`__ in the first example) or 
+This is necessary if you want the nested dictionary to hold
+    * a collection (like the `set  <https://docs.python.org/2/library/sets.html>`__ in the first example) or
     * a scalar with useful default values such as ``int`` or ``str``.
 
 .. <<Python
@@ -210,9 +213,9 @@ You can use nested iterators to iterate through ``nested_dict`` just like ordina
 
 This is less useful if you do not know beforehand how many levels of nesting you have.
 
-Instead, you can use ``items_flat()``\ , ``keys_flat()``\ , and ``values_flat()``\ . 
+Instead, you can use ``items_flat()``\ , ``keys_flat()``\ , and ``values_flat()``\ .
 (``iteritems_flat()``\ , ``iterkeys_flat()``\ , and ``itervalues_flat()`` are python2.7 style synonyms. )
-The ``_flat()`` functions are just like their normal counterparts except they compress all the nested 
+The ``_flat()`` functions are just like their normal counterparts except they compress all the nested
 keys into `tuple  <https://docs.python.org/2/library/functions.html#tuple>`__\ s:
 
 
