@@ -1,0 +1,32 @@
+\begin{theindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter {Symbols}
+  \item \_\_init\_\_() (nested\_dict.nested\_dict method), \hyperpage{9}
+  \item \_\_str\_\_() (nested\_dict.nested\_dict method), \hyperpage{11}
+
+  \indexspace
+  \bigletter I
+  \item items\_flat() (nested\_dict.nested\_dict method), \hyperpage{9}
+  \item iteritems\_flat() (nested\_dict.nested\_dict method), \hyperpage{9}
+  \item iterkeys\_flat() (nested\_dict.nested\_dict method), \hyperpage{10}
+  \item itervalues\_flat() (nested\_dict.nested\_dict method), \hyperpage{10}
+
+  \indexspace
+  \bigletter K
+  \item keys\_flat() (nested\_dict.nested\_dict method), \hyperpage{10}
+
+  \indexspace
+  \bigletter N
+  \item nested\_dict (class in nested\_dict), \hyperpage{9}
+  \item nested\_dict (module), \hyperpage{9}
+
+  \indexspace
+  \bigletter T
+  \item to\_dict() (nested\_dict.nested\_dict method), \hyperpage{10}
+
+  \indexspace
+  \bigletter V
+  \item values\_flat() (nested\_dict.nested\_dict method), \hyperpage{10}
+
+\end{theindex}
