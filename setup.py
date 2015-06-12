@@ -43,7 +43,7 @@ def parse_version(module_file):
     return match[0]
 
 
-f = open(os.path.join(os.path.dirname(__file__), "README.txt"))
+f = open(os.path.join(os.path.dirname(__file__), "README.rst"))
 nested_dict_readme = f.read()
 f.close()
 nested_dict_version = parse_version(os.path.join("nested_dict", "__init__.py"))
