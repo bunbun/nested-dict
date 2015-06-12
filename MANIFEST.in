@@ -1,3 +1,3 @@
-include *.py *.rst *.TXT *.yml
+include *.py *.rst *.TXT *.yml *.txt
 recursive-include docs tests
 
