@@ -252,8 +252,6 @@ class Test_nested_dict_list(unittest.TestCase):
         #
         #   updates try to preserve the sort of nested_dict
         #
-        import nested_dict
-        reload( nested_dict)
         d1 = nested_dict.nested_dict(3, int)
         d2 = nested_dict.nested_dict()
         d1[1][2][3] = 4
@@ -265,12 +263,9 @@ class Test_nested_dict_list(unittest.TestCase):
         # d1[2][3][4][5] = 6 but d1[2][3][4] should still be a default dict of int
         self.assertEqual(d1[2][3][5], 0)
 
-
         #
         #   updates try to preserve the sort of nested_dict
         #
-        import nested_dict
-        reload( nested_dict)
         d1 = nested_dict.nested_dict(3, list)
         d2 = {2: {3: {4: {5: 6}}}}
         d1[1][2][3].append(4)
@@ -281,4 +276,3 @@ class Test_nested_dict_list(unittest.TestCase):
         # d1[2][3][4][5] = 6 but d1[2][3][5] should still be a default dict of list
         d1[2][3][5].append(4)
         self.assertEqual(d1.to_dict(), {1: {2: {3: [4], 4: [4]}}, 2: {3: {4: {5: 6}, 5: [4]}}})
-
