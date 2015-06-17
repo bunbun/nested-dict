@@ -209,3 +209,76 @@ class Test_nested_dict_list(unittest.TestCase):
         a['1']['2']['3'] = 3
         a['A']['B'] = 15
         self.assertEqual(json.loads(str(a)), {u('1'): {u('2'): {u('3'): 3}}, u('A'): {u('B'): 15}})
+
+    def test_update(self):
+        """
+        update()
+        """
+        import nested_dict
+
+        #
+        #   nested dictionary updates
+        #
+        d1 = nested_dict.nested_dict()
+        d2 = nested_dict.nested_dict()
+        d1[1][2][3] = 4
+        d2[1][2][4] = 5
+        d1.update(d2)
+        d1.to_dict()
+        self.assertEqual(d1.to_dict(), {1: {2: {3: 4, 4: 5}}})
+
+        #
+        #   dictionary updates
+        #
+        d1 = nested_dict.nested_dict()
+        d2 = {1: {2: {4: 5}}}
+        d1[1][2][3] = 4
+        d2[1][2][4] = 5
+        d1.update(d2)
+        d1.to_dict()
+        self.assertEqual(d1.to_dict(), {1: {2: {3: 4, 4: 5}}})
+
+        #
+        #   scalar overwrites
+        #
+        d1 = nested_dict.nested_dict()
+        d2 = nested_dict.nested_dict()
+        d1[1][2][3] = 4
+        d2[1][2] = 5
+        d1.update(d2)
+        d1.to_dict()
+        self.assertEqual(d1.to_dict(), {1: {2: 5}})
+
+        #
+        #   updates try to preserve the sort of nested_dict
+        #
+        import nested_dict
+        reload( nested_dict)
+        d1 = nested_dict.nested_dict(3, int)
+        d2 = nested_dict.nested_dict()
+        d1[1][2][3] = 4
+        d1[1][2][4] = 5
+        d2[2][3][4][5] = 6
+        d1.update(d2)
+        d1.to_dict()
+        self.assertEqual(d1.to_dict(), {1: {2: {3: 4, 4: 5}}, 2: {3: {4: {5: 6}}}})
+        # d1[2][3][4][5] = 6 but d1[2][3][4] should still be a default dict of int
+        self.assertEqual(d1[2][3][5], 0)
+
+
+        #
+        #   updates try to preserve the sort of nested_dict
+        #
+        import nested_dict
+        reload( nested_dict)
+        d1 = nested_dict.nested_dict(3, list)
+        d2 = {2: {3: {4: {5: 6}}}}
+        d1[1][2][3].append(4)
+        d1[1][2][4].append(4)
+        d1.update(d2)
+        d1.to_dict()
+        self.assertEqual(d1.to_dict(), {1: {2: {3: [4], 4: [4]}}, 2: {3: {4: {5: 6}}}})
+        # d1[2][3][4][5] = 6 but d1[2][3][5] should still be a default dict of list
+        d1[2][3][5].append(4)
+        self.assertEqual(d1.to_dict(), {1: {2: {3: [4], 4: [4]}}, 2: {3: {4: {5: 6}, 5: [4]}}})
+

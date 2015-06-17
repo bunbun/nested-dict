@@ -157,38 +157,74 @@ def nested_dict_from_dict(orig_dict, nd):
             nd[key] = value
     return nd
 
+
+def _recursive_update(nd, other):
+    for key, value in iteritems(other):
+        #print ("key=", key)
+        if isinstance(value, (dict,)):
+
+            # recursive update if my item is nested_dict
+            if isinstance(nd[key], (_recursive_dict,)):
+                #print ("recursive update", key, type(nd[key]))
+                _recursive_update(nd[key], other[key])
+
+            # update if my item is dict
+            elif isinstance(nd[key], (dict,)):
+                #print ("update", key, type(nd[key]))
+                nd[key].update(other[key])
+
+            # overwrite
+            else:
+                #print ("self not nested dict or dict: overwrite", key)
+                nd[key] = value
+        # other not dict: overwrite
+        else:
+            #print ("other not dict: overwrite", key)
+            nd[key] = value
+    return nd
+
 # _________________________________________________________________________________________
 #
 #   nested_dict
 #
 # _________________________________________________________________________________________
 class nested_dict(_recursive_dict):
-    def __init__(self, *param):
+    def update(self, other):
+        """
+        Update recursively
+        """
+        _recursive_update(self, other)
+    def __init__(self, *param, **named_param):
         """
         Takes one or two parameters
             1) int, [TYPE]
             1) dict
         """
         if not len(param):
-            defaultdict.__init__(self, nested_dict)
+            self.factory = nested_dict
+            defaultdict.__init__(self, self.factory)
             return
 
         if len(param) == 1:
             # int = level
             if isinstance(param[0], int):
-                defaultdict.__init__(self, _nested_levels(param[0], any_type()))
+                self.factory = _nested_levels(param[0], any_type())
+                defaultdict.__init__(self, self.factory)
                 return
             # existing dict
             if isinstance(param[0], dict):
-                defaultdict.__init__(self, nested_dict)
+                self.factory = nested_dict
+                defaultdict.__init__(self, self.factory)
                 nested_dict_from_dict(param[0], self)
                 return
 
         if len(param) == 2:
             if isinstance(param[0], int):
-                defaultdict.__init__(self, _nested_levels(*param))
+                self.factory = _nested_levels(*param)
+                defaultdict.__init__(self, self.factory)
                 return
 
         raise Exception("nested_dict should be initialised with either "
                         "1) the number of nested levels and an optional type, or "
-                        "2) an existing dict to be converted into a nested dict.")
+                        "2) an existing dict to be converted into a nested dict "
+                        "(factory = %s. len(param) = %d, param = %s" % (factory, len(param), param))
