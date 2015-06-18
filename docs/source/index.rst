@@ -6,9 +6,12 @@
 ##############################################################################
 ``nested_dict``
 ##############################################################################
-``nested_dict`` extends python `dict  <https://docs.python.org/2/library/stdtypes.html#typesmapping>`__ and `defaultdict  <https://docs.python.org/2/library/collections.html#collections.defaultdict>`__ with multiple levels of nesting:
 
-You can created a deeply nested data structure without laboriously creating all the sub-levels along the way:
+    ``nested_dict`` is a drop-in replacement extending python `dict  <https://docs.python.org/2/library/stdtypes.html#typesmapping>`__ and
+    `defaultdict  <https://docs.python.org/2/library/collections.html#collections.defaultdict>`__
+    with multiple levels of nesting.
+
+    You can created a deeply nested data structure without laboriously creating all the sub-levels along the way:
 
       .. <<Python
 
@@ -22,31 +25,6 @@ You can created a deeply nested data structure without laboriously creating all 
           Python
 
 
-*****************************************************************
-Drop in replacement for ``dict``
-*****************************************************************
-
-
-  .. <<Python
-
-  .. code-block:: Pycon
-
-    >>> from nested_dict import nested_dict
-    >>> nd= nested_dict()
-    >>> nd["one"] = "1"
-    >>> nd[1]["two"] = "1 / 2"
-    >>> nd["uno"][2]["three"] = "1 / 2 / 3"
-    >>>
-    ... for keys_as_tuple, value in nd.items_flat():
-    ...    print ("%-20s == %r" % (keys_as_tuple, value))
-    ...
-    ('one',)             == '1'
-    (1, 'two')           == '1 / 2'
-    ('uno', 2, 'three')  == '1 / 2 / 3'
-
-  ..
-      Python
-
     Each nested level is created magically when accessed, a process known as "auto-vivification" in perl.
 
 
@@ -54,9 +32,12 @@ Drop in replacement for ``dict``
 Specifying the contained type
 ******************************************************************************
 
-    If you want the nested dictionary to hold
+    You can specify that a particular level of nesting holds a specified **value type**, for example:
         * a collection (like a `set  <https://docs.python.org/2/library/sets.html>`__ or `list <https://docs.python.org/2/tutorial/datastructures.html#more-on-lists>`__) or
         * a scalar with useful default values such as ``int`` or ``str``.
+
+
+**Examples**:
 
 ==============================
 *dict* of ``list``\ s
@@ -170,14 +151,14 @@ nested_dict provides
 (:ref:`iteritems_flat() <iteritems_flat>`, :ref:`iterkeys_flat() <iterkeys_flat>`, and :ref:`itervalues_flat() <itervalues_flat>` are python 2.7-style synonyms. )
 
 ##############################################################################
-Converting to / from dictionaries
+Converting to / from ``dict``
 ##############################################################################
 
 The magic of  ``nested_dict`` sometimes gets in the way (of `pickle  <https://docs.python.org/2/library/pickle.html>`__\ ing for example).
 
 We can convert to and from a vanilla python ``dict`` using
     * :ref:`nested_dict.to_dict() <to_dict>`
-    * :ref:`nested_dict constructor <nested_dict.init>`
+    * :ref:`the nested_dict constructor <nested_dict.init>`
 
     .. <<Python
 
@@ -211,12 +192,12 @@ We can convert to and from a vanilla python ``dict`` using
 Updating with another dictionary
 ##############################################################################
 
-You can use the ``nested_dict.update(other)`` method to merge in the contents of another dictionary.
+    You can use the ``nested_dict.update(other)`` method to merge in the contents of another dictionary.
 
-        If the nested_dict has a fixed level of nestedness and a value_type, then this is ignored for the key/value
-        pairs from other but otherwise preserved as far as possible.
+    If the ``nested_dict`` has a fixed nesting and a **value type**, then this are overridden for the key / value
+    pairs from the other dict but is otherwise preserved as far as possible.
 
-        For example, given a three level nested dictionary of integers:
+    For example, given a three-level nested ``nested_dict`` of ``int``:
 
             .. <<Python
 
@@ -254,7 +235,7 @@ You can use the ``nested_dict.update(other)`` method to merge in the contents of
                 Python
 
 
-        However, the rest of the dictionary still has the same default value type at the specified level of nestedness
+        However, the rest of the dictionary maintains has the same default **value type** at the specified level of nesting
 
             .. <<Python
 
@@ -262,7 +243,7 @@ You can use the ``nested_dict.update(other)`` method to merge in the contents of
 
                 >>> print (d1[2][3][4][5])
                 6
-                >>> # integers have a default value of zero
+                >>> # d1[2][3][???] == int() even though d1[2][3][4][5] = 6
                 >>> print (d1[2][3][5])
                 0
             ..
