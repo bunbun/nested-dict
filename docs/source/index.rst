@@ -193,6 +193,66 @@ We can convert to and from a vanilla python ``dict`` using
     ..
         Python
 
+##############################################################################
+Updating with another dictionary
+##############################################################################
+
+You can use the ``nested_dict.update(other)`` method to merge in the contents of another dictionary.
+
+        If the nested_dict has a fixed level of nestedness and a value_type, then this is ignored for the key/value
+        pairs from other but otherwise preserved as far as possible.
+
+        For example, given a three level nested dictionary of integers:
+
+            .. <<Python
+
+            .. code-block:: Python
+
+                >>> d1 = nested_dict.nested_dict(3, int)
+                >>> d1[1][2][3] = 4
+                >>> d1[1][2][4] = 5
+
+                >>> # integers have a default value of zero
+                >>> default_value = d1[1][2][5]
+                >>> print (default_value)
+                0
+                >>> print (d1.to_dict())
+                {1: {2: {3: 4, 4: 5, 5:0}}}
+
+            ..
+                Python
+
+
+        We can update this with any dictionary, not necessarily a three level ``nested_dict`` of ``int``.
+
+            .. <<Python
+
+            .. code-block:: pycon
+
+                >>> # some other nested_dict
+                >>> d2 = nested_dict.nested_dict()
+                >>> d2[2][3][4][5] = 6
+                >>> d1.update(d2)
+                >>> print (d1.to_dict())
+                {1: {2: {3: 4, 4: 5, 5: 0}}, 2: {3: {4: {5: 6}}}}
+
+            ..
+                Python
+
+
+        However, the rest of the dictionary still has the same default value type at the specified level of nestedness
+
+            .. <<Python
+
+            .. code-block:: Python
+
+                >>> print (d1[2][3][4][5])
+                6
+                >>> # integers have a default value of zero
+                >>> print (d1[2][3][5])
+                0
+            ..
+                Python
 
 ##############################################################################
 ``defaultdict``

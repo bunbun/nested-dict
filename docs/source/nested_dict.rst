@@ -15,7 +15,7 @@ Class documentation
 
         :param existing_dict: an existing ``dict`` to be converted into a ``nested_dict``
         :param nested_level: the level of nestedness in the dictionary
-        :param collection_type: the type of the values held in the dictionary
+        :param value_type: the type of the values held in the dictionary
 
         For example,
 
@@ -45,6 +45,16 @@ Class documentation
 
             ..
                 Python
+
+.. _nested_dict.update:
+
+    .. method:: update(other)
+
+        Updates the dictionary recursively with the key/value pairs from other, overwriting existing keys. Return None.
+
+        If the nested_dict has a fixed level of nestedness and a value_type, then this is ignored for the key/value
+        pairs from other but otherwise preserved as far as possible.
+
 
 .. _iteritems_flat:
 
