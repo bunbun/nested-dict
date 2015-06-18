@@ -6,7 +6,21 @@
 ##############################################################################
 ``nested_dict``
 ##############################################################################
-``nested_dict`` extends ``defaultdict`` to support python ``dict`` with multiple levels of nested-ness:
+``nested_dict`` extends python `dict  <https://docs.python.org/2/library/stdtypes.html#typesmapping>`__ and `defaultdict  <https://docs.python.org/2/library/collections.html#collections.defaultdict>`__ with multiple levels of nesting:
+
+You can created a deeply nested data structure without laboriously creating all the sub-levels along the way:
+
+      .. <<Python
+
+      .. code-block:: Pycon
+
+        >>> nd= nested_dict()
+        >>> # magic
+        >>> nd["one"][2]["three"] = 4
+
+      ..
+          Python
+
 
 *****************************************************************
 Drop in replacement for ``dict``
