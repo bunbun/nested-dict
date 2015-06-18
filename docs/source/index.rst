@@ -55,7 +55,7 @@ Specifying the contained type
 ******************************************************************************
 
     If you want the nested dictionary to hold
-        * a collection (like the `set  <https://docs.python.org/2/library/sets.html>`__ in the first example) or
+        * a collection (like a `set  <https://docs.python.org/2/library/sets.html>`__ or `list <https://docs.python.org/2/tutorial/datastructures.html#more-on-lists>`__) or
         * a scalar with useful default values such as ``int`` or ``str``.
 
 ==============================
