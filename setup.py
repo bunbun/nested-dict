@@ -22,12 +22,6 @@ except ImportError:
     from setuptools import setup
 
 
-import sys
-if not sys.version_info[0:2] >= (2, 7):
-    sys.stderr.write("Requires Python later than 2.7\n")
-    sys.exit(1)
-
-
 # Following the recommendations of PEP 396 we parse the version number
 # out of the module.
 def parse_version(module_file):
@@ -65,10 +59,9 @@ setup(
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.1",
-        "Programming Language :: Python :: 3.2",
         "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
@@ -86,6 +79,8 @@ setup(
         "Topic :: Scientific/Engineering",
         "Topic :: Utilities",
     ],
+
+    test_suite="tests.test_nested_dict",
 )
 
 # python setup.py register
