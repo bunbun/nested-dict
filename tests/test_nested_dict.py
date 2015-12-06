@@ -1,8 +1,4 @@
-"""
-
-    test_nested_dict.py
-
-"""
+"""Test module for nested_dict."""
 from __future__ import print_function
 
 
@@ -16,12 +12,11 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, parent_dir)
 
 
-class Test_nested_dict_default(unittest.TestCase):
+class Test_nested_dict_constructor(unittest.TestCase):
+    """Test nested_dict constructor parameters."""
 
     def test_default(self):
-        """
-            test a range of nested_dict
-        """
+        """Test constructor without parameters."""
         from nested_dict import nested_dict
         nd = nested_dict()
         nd['new jersey']['mercer county']['plumbers'] = 3
@@ -44,23 +39,8 @@ class Test_nested_dict_default(unittest.TestCase):
         all = sorted(tup for tup in nd.items_flat())
         self.assertEqual(all, expected_result)
 
-import sys
-if sys.version < '3':
-    import codecs
-
-    def u(x):
-        return codecs.unicode_escape_decode(x)[0]
-else:
-
-    def u(x):
-        return x
-
-
-class Test_nested_dict_list(unittest.TestCase):
-
     def test_bad_init(self):
-        """
-        """
+        """Test with invalid constructor parameters."""
         #
         #   Maximum of four levels
         #
@@ -85,9 +65,7 @@ class Test_nested_dict_list(unittest.TestCase):
             pass
 
     def test_fixed_nesting(self):
-        """
-        Fixed levels of nesting, no type specified
-        """
+        """Fixed levels of nesting, no type specified."""
         #
         #   Maximum of four levels
         #
@@ -115,9 +93,7 @@ class Test_nested_dict_list(unittest.TestCase):
             pass
 
     def test_list(self):
-        """
-            test a range of nested_dict
-        """
+        """Test with nested type of `list`."""
         import nested_dict
         nd = nested_dict.nested_dict(2, list)
         nd['new jersey']['mercer county'].append('plumbers')
@@ -153,10 +129,12 @@ class Test_nested_dict_list(unittest.TestCase):
                                                                   "staff"]},
                               "new york": {"queens county": ["cricketers"]}})
 
+
+class Test_nested_dict_methods(unittest.TestCase):
+    """Test methods of nested_dict."""
+
     def test_iteritems_flat(self):
-        """
-        test iteritems_flat()
-        """
+        """Test iteritems_flat method."""
         import nested_dict
         a = nested_dict.nested_dict()
         a['1']['2']['3'] = 3
@@ -164,10 +142,7 @@ class Test_nested_dict_list(unittest.TestCase):
         self.assertEqual(sorted(a.iteritems_flat()), [(('1', '2', '3'), 3), (('A', 'B'), 15)])
 
     def test_iterkeys_flat(self):
-        """
-        test iterkeys_flat
-        iterate through values with nested keys flattened into a tuple
-        """
+        """Test iterkeys_flat method."""
         import nested_dict
         a = nested_dict.nested_dict()
         a['1']['2']['3'] = 3
@@ -175,10 +150,7 @@ class Test_nested_dict_list(unittest.TestCase):
         self.assertEqual(sorted(a.iterkeys_flat()), [('1', '2', '3'), ('A', 'B')])
 
     def test_itervalues_flat(self):
-        """
-        itervalues_flat
-        iterate through values as a single list, without considering the degree of nesting
-        """
+        """Test itervalues_flat method."""
         import nested_dict
         a = nested_dict.nested_dict()
         a['1']['2']['3'] = 3
@@ -186,10 +158,7 @@ class Test_nested_dict_list(unittest.TestCase):
         self.assertEqual(sorted(a.itervalues_flat()), [3, 15])
 
     def test_to_dict(self):
-        """
-        to_dict()
-        Converts the nested dictionary to a nested series of standard ``dict`` objects
-        """
+        """Test to_dict method."""
         import nested_dict
         a = nested_dict.nested_dict()
         a['1']['2']['3'] = 3
@@ -202,20 +171,16 @@ class Test_nested_dict_list(unittest.TestCase):
         self.assertEqual(b, {'1': {'2': {'3': 3}}, 'A': {'B': 15}})
 
     def test_str(self):
-        """
-        str()
-        """
+        """Test __str__ method."""
         import nested_dict
         import json
         a = nested_dict.nested_dict()
         a['1']['2']['3'] = 3
         a['A']['B'] = 15
-        self.assertEqual(json.loads(str(a)), {u('1'): {u('2'): {u('3'): 3}}, u('A'): {u('B'): 15}})
+        self.assertEqual(json.loads(str(a)), {'1': {'2': {'3': 3}}, 'A': {'B': 15}})
 
     def test_update(self):
-        """
-        update()
-        """
+        """Test update method."""
         import nested_dict
 
         #
