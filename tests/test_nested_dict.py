@@ -31,12 +31,14 @@ class Test_nested_dict_default(unittest.TestCase):
         nd['new york']['queens county']['plumbers'] = 9
         nd['new york']['queens county']['salesmen'] = 36
 
-        expected_result = sorted([(('new jersey', 'mercer county', 'plumbers'),        3),
-                                  (('new jersey', 'mercer county', 'programmers'),    81),
-                                  (('new jersey', 'middlesex county', 'programmers'), 81),
-                                  (('new jersey', 'middlesex county', 'salesmen'),    62),
-                                  (('new york', 'queens county', 'plumbers'),          9),
-                                  (('new york', 'queens county', 'salesmen'),         36)])
+        expected_result = sorted([
+            (('new jersey', 'mercer county', 'plumbers'), 3),
+            (('new jersey', 'mercer county', 'programmers'), 81),
+            (('new jersey', 'middlesex county', 'programmers'), 81),
+            (('new jersey', 'middlesex county', 'salesmen'), 62),
+            (('new york', 'queens county', 'plumbers'), 9),
+            (('new york', 'queens county', 'salesmen'), 36),
+        ])
         all = sorted(tup for tup in nd.iteritems_flat())
         self.assertEqual(all, expected_result)
         all = sorted(tup for tup in nd.items_flat())
@@ -124,9 +126,9 @@ class Test_nested_dict_list(unittest.TestCase):
         nd['new jersey']['middlesex county'].append('staff')
         nd['new york']['queens county'].append('cricketers')
         all = sorted(tup for tup in nd.iteritems_flat())
-        self.assertEqual(all, [(('new jersey', 'mercer county'),    ['plumbers', 'programmers']),
+        self.assertEqual(all, [(('new jersey', 'mercer county'), ['plumbers', 'programmers']),
                                (('new jersey', 'middlesex county'), ['salesmen', 'staff']),
-                               (('new york', 'queens county'),      ['cricketers']),
+                               (('new york', 'queens county'), ['cricketers']),
                                ])
         all = sorted(tup for tup in nd.itervalues_flat())
         self.assertEqual(all, [['cricketers'],

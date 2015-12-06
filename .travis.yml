@@ -10,8 +10,7 @@ install:
   - pip install .
 
 script: 
-  - flake8 *.py tests --exclude=ez_setup.py --max-line-length=100
+  - flake8
   - nosetests --with-coverage --cover-package nested_dict
               --cover-inclusive --cover-min-percentage 85
-  - if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then make -C docs html; fi
-  - if [[ $TRAVIS_PYTHON_VERSION > 3.2 ]]; then make -C docs html; fi
+  - if [[ $TRAVIS_PYTHON_VERSION != 3.2 ]]; then make -C docs html; fi
