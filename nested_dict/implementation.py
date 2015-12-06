@@ -227,4 +227,5 @@ class nested_dict(_recursive_dict):
         raise Exception("nested_dict should be initialised with either "
                         "1) the number of nested levels and an optional type, or "
                         "2) an existing dict to be converted into a nested dict "
-                        "(factory = %s. len(param) = %d, param = %s" % (factory, len(param), param))
+                        "(factory = %s. len(param) = %d, param = %s"
+                        % (self.factory, len(param), param))
