@@ -6,6 +6,7 @@ python:
   - "3.4"
   - "3.5"
   - "pypy"
+  - "pypy3"
 
 install:
   - pip install -r requirements.txt
@@ -15,4 +16,4 @@ script:
   - flake8
   - nosetests --with-coverage --cover-package nested_dict
               --cover-inclusive --cover-min-percentage 85
-  - if [[ $TRAVIS_PYTHON_VERSION != 3.2 ]]; then make -C docs html; fi
+  - if [[ $TRAVIS_PYTHON_VERSION != pypy3 ]]; then make -C docs html; fi
