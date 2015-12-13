@@ -8,6 +8,7 @@
 # it under the terms of the MIT license as found here
 # http://opensource.org/licenses/MIT.
 #
+"""Setup module for nested-dict."""
 
 import re
 import os
@@ -26,7 +27,8 @@ except ImportError:
 # out of the module.
 def parse_version(module_file):
     """
-    Parses the version string from the specified file.
+    Parse the version string from the specified file.
+
     This implementation is ugly, but there doesn't seem to be a good way
     to do this in general at the moment.
     """

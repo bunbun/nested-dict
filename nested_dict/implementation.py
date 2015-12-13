@@ -1,9 +1,7 @@
 #!/usr/bin/env python
+"""`nested_dict` provides dictionaries with multiple levels of nested-ness."""
 from __future__ import print_function
 from __future__ import division
-"""
-`nested_dict` provides dictionaries with multiple levels of nested-ness:
-"""
 
 ################################################################################
 #
@@ -39,6 +37,8 @@ import sys
 
 def flatten_nested_items(dictionary):
     """
+    Flatten a nested_dict.
+
     iterate through nested dictionary (with iterkeys() method)
          and return with nested keys flattened into a tuple
     """
@@ -59,7 +59,9 @@ def flatten_nested_items(dictionary):
 
 class _recursive_dict(defaultdict):
     """
-    Parent class of nested_dict. Defined separately for _nested_levels to work
+    Parent class of nested_dict.
+
+    Defined separately for _nested_levels to work
     transparently, so dictionaries with a specified (and constant) degree of nestedness
     can be created easily.
 
@@ -67,25 +69,19 @@ class _recursive_dict(defaultdict):
         recursively.
 
     """
-    def iteritems_flat(self):
-        """
-        iterate through values with nested keys flattened into a tuple
-        """
 
+    def iteritems_flat(self):
+        """Iterate through items with nested keys flattened into a tuple."""
         for key, value in flatten_nested_items(self):
             yield key, value
 
     def iterkeys_flat(self):
-        """
-        iterate through values with nested keys flattened into a tuple
-        """
+        """Iterate through keys with nested keys flattened into a tuple."""
         for key, value in flatten_nested_items(self):
             yield key
 
     def itervalues_flat(self):
-        """
-        iterate through values with nested keys flattened into a tuple
-        """
+        """Iterate through values with nested keys flattened into a tuple."""
         for key, value in flatten_nested_items(self):
             yield value
 
@@ -94,9 +90,7 @@ class _recursive_dict(defaultdict):
     values_flat = itervalues_flat
 
     def to_dict(self, input_dict=None):
-        """
-        Converts the nested dictionary to a nested series of standard ``dict`` objects
-        """
+        """Convert the nested dictionary to a nested series of standard ``dict`` objects."""
         #
         # Calls itself recursively to unwind the dictionary.
         # Use to_dict() to start at the top level of nesting
@@ -114,25 +108,21 @@ class _recursive_dict(defaultdict):
         return plain_dict
 
     def __str__(self, indent=None):
-        """
-        string version of self
-        """
+        """Representation of self as a string."""
         import json
         return json.dumps(self.to_dict(), indent=indent)
 
 
-class any_type(object):
+class _any_type(object):
     pass
 
 
 def _nested_levels(level, nested_type):
-    """
-    Helper function to create a specified degree of nested dictionaries
-    """
+    """Helper function to create a specified degree of nested dictionaries."""
     if level > 2:
         return lambda: _recursive_dict(_nested_levels(level - 1, nested_type))
     if level == 2:
-        if isinstance(nested_type, any_type):
+        if isinstance(nested_type, _any_type):
             return lambda: _recursive_dict()
         else:
             return lambda: _recursive_dict(_nested_levels(level - 1, nested_type))
@@ -151,6 +141,7 @@ else:
 #
 # _________________________________________________________________________________________
 def nested_dict_from_dict(orig_dict, nd):
+    """Helper to build nested_dict from a dict."""
     for key, value in iteritems(orig_dict):
         if isinstance(value, (dict,)):
             nd[key] = nested_dict_from_dict(value, nested_dict())
@@ -191,15 +182,20 @@ def _recursive_update(nd, other):
 #
 # _________________________________________________________________________________________
 class nested_dict(_recursive_dict):
+    """
+    Nested dict.
+
+    Uses defaultdict to automatically add levels of nested dicts and other types.
+    """
 
     def update(self, other):
-        """
-        Update recursively
-        """
+        """Update recursively."""
         _recursive_update(self, other)
 
     def __init__(self, *param, **named_param):
         """
+        Constructor.
+
         Takes one or two parameters
             1) int, [TYPE]
             1) dict
@@ -212,7 +208,7 @@ class nested_dict(_recursive_dict):
         if len(param) == 1:
             # int = level
             if isinstance(param[0], int):
-                self.factory = _nested_levels(param[0], any_type())
+                self.factory = _nested_levels(param[0], _any_type())
                 defaultdict.__init__(self, self.factory)
                 return
             # existing dict
