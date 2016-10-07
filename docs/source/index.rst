@@ -194,8 +194,8 @@ Updating with another dictionary
 
     You can use the ``nested_dict.update(other)`` method to merge in the contents of another dictionary.
 
-    If the ``nested_dict`` has a fixed nesting and a **value type**, then this are overridden for the key / value
-    pairs from the other dict but is otherwise preserved as far as possible.
+    If the ``nested_dict`` has a fixed nesting and a **value type**, then key / value pairs will be overridden 
+    from the other dict like in Python's standard library ``dict``. Otherwise they will be preserved as far as possible.
 
     For example, given a three-level nested ``nested_dict`` of ``int``:
 
